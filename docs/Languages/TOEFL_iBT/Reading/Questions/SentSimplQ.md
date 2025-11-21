@@ -62,3 +62,55 @@
 
 - 检验选项的局部内容
 
+## 逻辑关系的等价转化
+
+### （1）否定
+
+- **明显的否定**：no, not, none, neither, nor, never, deny  
+- **隐含的否定**：fail to, lack of / lack, absent from, refuse, ignore, remove, few, little, 否定词缀 -less  
+
+### （2）因果
+
+**明显的因果**：  
+
+- because / because of, since, for, as, due to, owing to, in that  
+- so, so that, as a result, therefore, thereby, hence, consequently, accordingly, thus  
+
+**隐含的因果**（重点记忆）： 
+
+- 使役动词：lead to, cause, result in, give rise to, render, produce, make, support, stimulate, spur, spark, fuel, motivate, prompt, promote, be responsible for  
+
+<br>
+
+- 由…而来：come from, result from, originate, derive from, stem from, be attributable to  
+- 反映/体现：reflect, suggest, show, imply, demonstrate  
+- 考虑到/依赖：given, considering, on account of, in view of, thanks to, rely on, depend on  
+- 条件：if, when, once, as long as, 虚拟语气  
+- 分词短语、不定式、独立主格作状语  
+
+### （3）比较
+
+**明显的比较**：  
+
+- 同级：as…as  
+- 比较级：more than  
+
+**隐含的比较**：  
+
+- 变化量：change, vary, alter, increase, decrease, create, destroy  
+- 趋势（隐含同级比较）：develop, improve, progress, grow, remain, stay, stable  
+- 差异：same, different, match  
+- 超越（递进）：surpass, exceed, excel, over 
+
+### （4）最高级 & 绝对化
+
+**明显的最高级**：
+
+- est, the most important / significant  
+
+**隐含最高级/绝对化**：
+
+- maximum, minimum, outstanding, extreme, favorite, peak, top  
+- 否定加比较：No one could be better than…  
+- 程度副词：surprisingly, amazingly, prohibitively (high), extremely  
+
