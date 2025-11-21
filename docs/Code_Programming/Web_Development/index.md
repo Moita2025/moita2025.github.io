@@ -16,12 +16,12 @@ hide:
 
     ---
 
-    [:octicons-arrow-right-24: 了解更多](DIYFilter/)
+    [:octicons-arrow-right-24: 了解更多]()
 
 -   :octicons-browser-24:{ .lg .middle } &nbsp; __Flask 网页开发__
 
     ---
 
-    [:octicons-arrow-right-24: 了解更多](Flask/)
+    [:octicons-arrow-right-24: 了解更多]()
 
 </div>
