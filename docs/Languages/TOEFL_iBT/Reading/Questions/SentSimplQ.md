@@ -37,13 +37,11 @@
 	- 强调
 	- 虚拟
 
-## 句子简化题方法
-
-### 题型识别
+## 题目识别
 
 > Which of the sentences below best **expresses the essential information** in the highlighted sentence in the passage?
 
-### 方法技巧
+## 方法技巧
 
 **主干：主干内容相近原则**
 
