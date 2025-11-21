@@ -1,6 +1,6 @@
 # 结构阅读法入门 + 标题预测
 
-<button onclick="BackToTop('2')" class="BackToTop">返回 “托福”</button>
+<button onclick="BackToTop('3')" class="BackToTop">返回 “托福”</button>
 
 ---
 

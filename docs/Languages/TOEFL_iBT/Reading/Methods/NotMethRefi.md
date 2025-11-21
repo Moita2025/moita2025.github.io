@@ -1,6 +1,6 @@
 # 阅读笔记法 + 精读标准
 
-<button onclick="BackToTop('2')" class="BackToTop">返回 “托福”</button>
+<button onclick="BackToTop('3')" class="BackToTop">返回 “托福”</button>
 
 ---
 
