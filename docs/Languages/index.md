@@ -33,7 +33,7 @@ hide:
 
 感谢 [KyleBing 和 huahuadiandian](https://github.com/KyleBing/english-vocabulary)
 
-<div class="grid cards non-flag-emoji" markdown>
+<div class="grid cards non-flag-emoji compact-grid" markdown>
 
 -   🌱 &nbsp; __初中词汇（Junior Vocab）__
 
@@ -83,7 +83,7 @@ hide:
 
 ## 语言考试
 
-<div class="grid cards" markdown>
+<div class="grid cards compact-grid" markdown>
 
 -   🇬🇧 &nbsp; __TOEFL iBT__
 

@@ -21,11 +21,19 @@ hide:
 
 ## :octicons-book-24:{ .lg .middle } &nbsp; __托福阅读__
 
-<div class="grid cards compact-grid" markdown>
+<div class="grid cards compact-grid-single-row" markdown>
 
 -   __介绍__
 
     [:octicons-arrow-right-24: 了解更多](Reading/Intro.md)
+
+-   __题型__
+
+    [:octicons-arrow-right-24: 了解更多](Reading/Questions/SentSimplQ.md)
+
+-   __题型__
+
+    [:octicons-arrow-right-24: 了解更多](Reading/Questions/SentSimplQ.md)
 
 -   __题型__
 
