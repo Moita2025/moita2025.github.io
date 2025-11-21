@@ -1,6 +1,6 @@
 # 词汇表
 
-<button onclick="BackToTop('2')" class="BackToTop">返回 “语言”</button>
+<button onclick="BackToTop('3')" class="BackToTop">返回 “语言”</button>
 
 ---
 
