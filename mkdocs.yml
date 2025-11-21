@@ -52,6 +52,7 @@ extra_javascript:
 extra_css:
   - assets/stylesheets/back_to_top.css
   - assets/stylesheets/controls.css
+  - assets/stylesheets/compact_grid.css
   - assets/stylesheets/pagination.css
   - assets/stylesheets/word/word_letter_index_buttons.css
   - assets/stylesheets/word/word_data_search.css

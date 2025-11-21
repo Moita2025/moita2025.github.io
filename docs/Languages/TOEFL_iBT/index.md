@@ -1,6 +1,6 @@
 ---
 hide:
-  - toc
+  - navigation
 ---
 
 # TOEFL iBT
@@ -15,37 +15,27 @@ hide:
     
     托福考试改革的具体信息，请查阅：[Upcoming updates](https://www.ets.org/toefl/test-takers/ibt/upcoming-updates-jan-2026.html) ，以及其他官方网站
 
+## :fontawesome-solid-circle-info:{ .lg .middle } &nbsp; __考试内容__
 
-<div class="grid cards" markdown>
+[:octicons-arrow-right-24: 了解更多](about.md)
 
--   :fontawesome-solid-circle-info:{ .lg .middle } &nbsp; __考试内容__
+## :octicons-book-24:{ .lg .middle } &nbsp; __托福阅读__
 
-    ---
+<div class="grid cards compact-grid" markdown>
 
-    [:octicons-arrow-right-24: 了解更多](about.md)
-
--   :octicons-book-24:{ .lg .middle } &nbsp; __托福阅读__
-
-    ---
+-   __介绍__
 
     [:octicons-arrow-right-24: 了解更多](Reading/Intro.md)
 
--   :fontawesome-solid-ear-listen:{ .lg .middle } &nbsp; __托福听力__
+-   __题型__
 
-    ---
-
-    [:octicons-arrow-right-24: 了解更多]()
-
--   :material-account-voice:{ .lg .middle } &nbsp; __托福口语__
-
-    ---
-
-    [:octicons-arrow-right-24: 了解更多]()
-
--   :material-pen:{ .lg .middle } &nbsp; __托福写作__
-
-    ---
-
-    [:octicons-arrow-right-24: 了解更多]()
+    [:octicons-arrow-right-24: 了解更多](Reading/Questions/SentSimplQ.md)
 
 </div>
+
+## :fontawesome-solid-ear-listen:{ .lg .middle } &nbsp; __托福听力__
+
+## :material-account-voice:{ .lg .middle } &nbsp; __托福口语__
+
+## :material-pen:{ .lg .middle } &nbsp; __托福写作__
+
