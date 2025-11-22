@@ -1,0 +1,67 @@
+/* ---- 整数 Input 基础样式 ---- */
+.ui-int-input {
+    padding: 0.3em 0.4em;
+    border-radius: 6px;
+    border: 1.5px solid var(--md-default-fg-color--lighter);
+    background: var(--md-default-bg-color);
+    color: var(--md-default-fg-color);
+    transition: all 0.2s ease;
+}
+
+/* Hover */
+.ui-int-input:hover {
+    border-color: var(--md-accent-fg-color);
+}
+
+/* Focus */
+.ui-int-input:focus {
+    outline: none;
+    border-color: var(--md-accent-fg-color);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--md-accent-fg-color) 30%, transparent);
+}
+
+/* ---- Button 基础样式 ---- */
+.ui-btn {
+    padding: 0.35em 0.8em;
+    border-radius: 6px;
+    border: 1.5px solid var(--md-default-fg-color--lighter);
+    background: color-mix(in srgb, var(--md-accent-fg-color) 12%, var(--md-default-bg-color));
+    color: var(--md-default-fg-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Hover */
+.ui-btn:hover {
+    background: color-mix(in srgb, var(--md-accent-fg-color) 20%, var(--md-default-bg-color));
+    border-color: var(--md-accent-fg-color);
+}
+
+/* Active */
+.ui-btn:active {
+    background: color-mix(in srgb, var(--md-accent-fg-color) 30%, var(--md-default-bg-color));
+}
+
+/* ---- 文本输入框 基础样式 ---- */
+.ui-txt {
+    padding: 0.35em 0.8em;
+    border-radius: 6px;
+    border: 1.5px solid var(--md-default-fg-color--lighter);
+    color: var(--md-default-fg-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Hover */
+.ui-txt:hover {
+    border-color: var(--md-accent-fg-color);
+}
+
+/* Dark mode 优化 */
+@media (prefers-color-scheme: dark) {
+    .ui-btn,
+    .ui-txt,
+    .ui-int-input {
+        border-color: var(--md-default-fg-color--lightest);
+    }
+}
