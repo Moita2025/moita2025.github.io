@@ -6,7 +6,7 @@
 
 ## 题目识别
 
-
+> The word “manipulated” in the passage is closet in meaning to
 
 ## 方法技巧
 

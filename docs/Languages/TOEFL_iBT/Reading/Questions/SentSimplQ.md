@@ -4,6 +4,10 @@
 
 ---
 
+## 题目识别
+
+> Which of the sentences below best **expresses the essential information** in the highlighted sentence in the passage?
+
 ## 句子结构
 
 ### 常见 5 大句型
@@ -36,31 +40,6 @@
 	- 倒装
 	- 强调
 	- 虚拟
-
-## 题目识别
-
-> Which of the sentences below best **expresses the essential information** in the highlighted sentence in the passage?
-
-## 方法技巧
-
-**主干：主干内容相近原则**
-
-1. 原句为单一主干时，选项省略原句主干，必错
-2. 原句为多个主干或并列主干成分时，选项省略部分内容，可考虑选择
-
-**逻辑：逻辑矛盾可排除**
-
-（选项与原文的逻辑关系要相符）
-
-- 原因
-- 结果
-- 转折
-- 让步
-- 并列
-
-**考点：比较、否定、绝对与相对**
-
-- 检验选项的局部内容
 
 ## 逻辑关系的等价转化
 
@@ -113,4 +92,27 @@
 - maximum, minimum, outstanding, extreme, favorite, peak, top  
 - 否定加比较：No one could be better than…  
 - 程度副词：surprisingly, amazingly, prohibitively (high), extremely  
+
+## 方法技巧
+
+**主干：主干内容相近原则**
+
+1. 原句为单一主干时，选项省略原句主干，必错
+2. 原句为多个主干或并列主干成分时，选项省略部分内容，可考虑选择
+	- 主干1主干2——3个错误选项，1个省略略√，省略略的可以选 
+	- 主干1主干2——2个错误选项，主干1主干2√，主干1
+
+**逻辑：逻辑矛盾可排除**
+
+（选项与原文的逻辑关系要相符）
+
+- 原因
+- 结果
+- 转折
+- 让步
+- 并列
+
+**考点：比较、否定、绝对与相对**
+
+- 检验选项的局部内容
 
