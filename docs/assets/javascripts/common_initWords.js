@@ -1,41 +1,44 @@
 // 全局状态记录器
 window.blogStatusDict = window.blogStatusDict || {};
 
-/**
- * 通用初始化 JSON 单词表
- * @param {string} containerId - 放置 data-json 的 DOM 元素的 id
- * @param {string} eventName - 载入完成后要派发的事件名称
- * @param {function(words):void} onLoaded - 可选回调，用于执行文件特定逻辑
- */
-async function initWordsGeneric(containerId, eventName, onLoaded = null) {
-    const container = document.getElementById(containerId);
-    if (!container) {
-        console.error(`找不到 id 为 ${containerId} 的元素`);
-        return;
-    }
+// 词库字典
+const WORD_JSON_MAP = {
+    "junior": "/assets/data/KyleBing-english-vocabulary/1-初中-顺序.json",
+    "senior": "/assets/data/KyleBing-english-vocabulary/2-高中-顺序.json",
+    "cet4": "/assets/data/KyleBing-english-vocabulary/3-CET4-顺序.json",
+    "cet6": "/assets/data/KyleBing-english-vocabulary/4-CET6-顺序.json",
+    "pg": "/assets/data/KyleBing-english-vocabulary/5-考研-顺序.json",
+    "toefl": "/assets/data/KyleBing-english-vocabulary/6-托福-顺序.json",
+    "sat": "/assets/data/KyleBing-english-vocabulary/7-SAT-顺序.json"
+};
 
-    const jsonFile = container.getAttribute('data-json');
-    if (!jsonFile) {
-        console.error(`${containerId} 上缺少 data-json 属性`);
-        return;
-    }
+/**
+ * 通用初始化 JSON 单词表（新版：根据 URL 参数 en_words 决定 JSON 文件）
+ * @param {string} eventName - 数据加载完成后派发的事件名
+ * @param {function(words):void} onLoaded - 加载完成后的回调
+ */
+async function initWordsGeneric(eventName, onLoaded = null) {
+
+    // 读取 URL 参数
+    const params = new URLSearchParams(window.location.search);
+    const key = params.get("en_words");
+
+    // 根据参数从字典获取 JSON 文件，不合法或缺失则 fallback 至 junior
+    const jsonFile = WORD_JSON_MAP[key] || WORD_JSON_MAP["junior"];
 
     try {
         const response = await fetch(jsonFile);
         const words = await response.json();
 
-        // 更新全局变量，也可以只在回调中用
         window.words = words;
-
-        // 标记当前事件名对应的数据已加载
         window.blogStatusDict[eventName] = true;
 
-        // 触发事件
+        // 派发事件
         const event = new CustomEvent(eventName, { detail: { words }});
         window.dispatchEvent(event);
 
-        // 回调（如果需要）
-        if (typeof onLoaded === 'function') {
+        // 回调
+        if (typeof onLoaded === "function") {
             onLoaded(words);
         }
 

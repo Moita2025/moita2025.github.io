@@ -1,5 +1,4 @@
 initWordsGeneric(
-    'data-holder',
     'wordsReady',
     function(words) {
         // 这里写 word_practice.js 需要做的事情

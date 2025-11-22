@@ -1,6 +1,6 @@
 # 词汇表
 
-<button onclick="BackToTop('3')" class="BackToTop">返回 “语言”</button>
+<button onclick="BackToTop('2')" class="BackToTop">返回 “语言”</button>
 
 ---
 
@@ -15,7 +15,7 @@
 
 ---
 
-<div id="words-table-container" data-json="/assets/data/KyleBing-english-vocabulary/2-高中-顺序.json"></div>
+<div id="words-table-container" data-json="/assets/data/KyleBing-english-vocabulary/3-CET4-顺序.json"></div>
 
 ---
 

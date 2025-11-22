@@ -75,21 +75,8 @@ nav:
   - 语言:
       - Languages/index.md
       - 英语词汇:
-          - 初中词汇:
-              - Languages/English_Vocab/Junior_Vocab/Words.md
-          - 高中词汇:
-              - Languages/English_Vocab/Senior_Vocab/Words.md
-          - 四级词汇:
-              - Languages/English_Vocab/Cet4_Vocab/Words.md
-              - Languages/English_Vocab/Cet4_Vocab/Practice_en2zh_mcq.md
-          - 六级词汇:
-              - Languages/English_Vocab/Cet6_Vocab/Words.md
-          - 考研词汇:
-              - Languages/English_Vocab/PG_Vocab/Words.md
-          - 托福词汇:
-              - Languages/English_Vocab/TOEFL_Vocab/Words.md
-          - SAT词汇:
-              - Languages/English_Vocab/SAT_Vocab/Words.md
+          - Languages/English_Vocab/Words.md
+          - Languages/English_Vocab/Practice_en2zh_mcq.md
       - 托福:
           - Languages/TOEFL_iBT/index.md
           - 考试内容:  Languages/TOEFL_iBT/about.md

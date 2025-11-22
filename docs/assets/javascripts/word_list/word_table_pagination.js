@@ -96,7 +96,6 @@ document.getElementById('go-page').addEventListener('click', () => {
 
 // 初始化
 initWordsGeneric(
-    'words-table-container',
     'wordsReady',
     function(words) {
         window.words = words;
