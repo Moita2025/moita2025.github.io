@@ -99,6 +99,8 @@ nav:
                   - Languages/TOEFL_iBT/Reading/Methods/AdvStruPatn.md
                   - Languages/TOEFL_iBT/Reading/Methods/NotMethRefi.md
               - Languages/TOEFL_iBT/Reading/ArtiSubjClasList.md
+          - 听力:
+              - Languages/TOEFL_iBT/Listening/ChairListeningMethod.md
   
   - 金融:
       - 汇率: Finance/Currencies.md

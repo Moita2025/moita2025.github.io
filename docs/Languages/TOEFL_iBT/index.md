@@ -43,6 +43,14 @@ hide:
 
 ## :fontawesome-solid-ear-listen:{ .lg .middle } &nbsp; __托福听力__
 
+<div class="grid cards compact-grid-single-row" markdown>
+
+-   __椅听法__
+
+    [:octicons-arrow-right-24: 了解更多](Listening/ChairListeningMethod.md)
+
+</div>
+
 ## :material-account-voice:{ .lg .middle } &nbsp; __托福口语__
 
 ## :material-pen:{ .lg .middle } &nbsp; __托福写作__
