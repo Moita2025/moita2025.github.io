@@ -39,26 +39,6 @@ plugins:
   - macros:
       module_name: macros
 
-extra_javascript:
-  - assets/javascripts/mathjax.js
-  - https://unpkg.com/mathjax@3.2.2/es5/tex-mml-chtml.js
-  - assets/javascripts/back_to_top.js
-  - assets/javascripts/third_party/twemoji.min.js
-  - assets/javascripts/third_party/rough-notation.iife.js
-  - assets/javascripts/third_party/chart.js
-  - assets/javascripts/exchange_chart.js
-  - assets/javascripts/third_party/fuse.js
-  - assets/javascripts/word_list/word_data_search.js
-
-extra_css:
-  - assets/stylesheets/back_to_top.css
-  - assets/stylesheets/controls.css
-  - assets/stylesheets/compact_grid.css
-  - assets/stylesheets/pagination.css
-  - assets/stylesheets/word/word_letter_index_buttons.css
-  - assets/stylesheets/word/word_data_search.css
-  - assets/stylesheets/word/word_test_style.css
-
 nav:
   - 首页: index.md
   - 编程:
