@@ -81,6 +81,8 @@ nav:
               - Languages/TOEFL_iBT/Reading/ArtiSubjClasList.md
           - 听力:
               - Languages/TOEFL_iBT/Listening/ChairListeningMethod.md
+          - 口语:
+              - Languages/TOEFL_iBT/Speaking/SpeakScorCrtr.md
   
   - 金融:
       - 汇率: Finance/Currencies.md
