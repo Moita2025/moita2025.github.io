@@ -157,3 +157,39 @@
 | TPO 10 | Variations in the Climate      | Climate  | 气候变化 Climate     |
 | TPO 18 | Lightning                      | Climate  | 自然现象 Lightning   |
 | TPO 23 | Urban Climates                 | Climate  | 城市气候 Urban       |
+
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+  // 1. 加载索引
+  const response = await fetch("/assets/data/toefl_data/toefl_reading_articles_index.json");  // 改成你的实际路径
+  const index = await response.json();
+  const map = {};
+  index.forEach(item => {
+    map[item.Article.trim()] = item;
+  });
+
+  // 2. 遍历所有表格的第二列（标题列）
+  document.querySelectorAll("table tr td:nth-child(2)").forEach(td => {
+    const text = td.textContent.trim();
+    if (map[text]) {
+      const { KeyName, ParamName } = map[text];
+
+      // 处理两篇 Groundwater 的显示问题（可选美化）
+      let displayTitle = text;
+      if (text === "Groundwater") {
+        const source = td.parentElement.querySelector("td:nth-child(1)").textContent.trim();
+        displayTitle = source.includes("01") ? "Groundwater (TPO01)" : "Groundwater (TPO28)";
+      }
+
+      const link = document.createElement("a");
+      link.href = `/vocab?article=${ParamName}`;
+      link.target = "_blank";
+      link.textContent = displayTitle;
+      link.style.color = "var(--md-primary-fg-color)";
+      link.style.textDecoration = "underline";
+      td.textContent = "";  // 清空原文本
+      td.appendChild(link);
+    }
+  });
+});
+</script>

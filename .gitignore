@@ -4,4 +4,6 @@
 *.lnk
 /__pycache__
 start-mkdocs.ps1
-/docs/assets/data/toefl_data
+
+docs/assets/data/toefl_data/toefl_tpo1-55_listening_text.json
+docs/assets/data/toefl_data/toefl_tpo1-55_listening_text_structure_flags.json
