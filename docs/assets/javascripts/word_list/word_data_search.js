@@ -57,6 +57,16 @@ function search_init()
             li.style.fontWeight = "bold";
             resultList.appendChild(li);
         }
+
+        updateSearchParams({ search: keyword });
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const urlKeyword = params.get("search");
+
+    if (urlKeyword && /^[A-Za-z]+$/.test(urlKeyword)) {
+        inputEl.value = urlKeyword;
+        doSearch();   // 自动搜索
     }
 
     // ==== 5. 事件 =============================================================
@@ -83,6 +93,8 @@ function search_init()
         inputEl.value = "";
         resultList.innerHTML = "";
         inputEl.focus();
+
+        updateSearchParams({ search: "" });
     });
 }
 

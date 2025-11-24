@@ -51,6 +51,7 @@
 
 <script src="/assets/javascripts/init_word_page.js"></script>
 <script src="/assets/javascripts/third_party/fuse.js"></script>
+<script src="/assets/javascripts/url_utils.js"></script>
 <script src="/assets/javascripts/word_list/word_table_pagination.js"></script>
 <script src="/assets/javascripts/word_list/word_table_letter_index.js"></script>
 <script src="/assets/javascripts/word_list/word_data_search.js"></script>

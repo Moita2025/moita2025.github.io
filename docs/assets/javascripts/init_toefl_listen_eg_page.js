@@ -176,17 +176,6 @@ function getTpoFromSearchParam() {
   return Number.isNaN(num) ? null : num;
 }
 
-function setTpoSearchParam(tpoNumber) {
-  const url = new URL(window.location.href);
-  url.searchParams.set('TPO', String(tpoNumber));
-
-  // 清除哈希部分（去掉 # 后面的内容）
-  url.hash = '';
-
-  // 不刷新的情况下更新地址
-  window.history.replaceState({}, '', url.toString());
-}
-
 // ===================== 3. 结构标记查找 / 默认设置构造 =====================
 function findTaskSetting(tpoNo, taskNo) {
   if (!Array.isArray(tpoFlags)) return null;
@@ -291,7 +280,7 @@ function renderPage(pageIndex) {
   updatePageInfo();
 
   // 同步 URL search param: ?TPO=该页对应的 TPO 编号
-  setTpoSearchParam(tpoEntry.TPO);
+  updateSearchParams({ TPO: tpoEntry.TPO });
 
   rewriteMkdocsNav();
   rewriteMainTitle();
