@@ -179,6 +179,10 @@ function getTpoFromSearchParam() {
 function setTpoSearchParam(tpoNumber) {
   const url = new URL(window.location.href);
   url.searchParams.set('TPO', String(tpoNumber));
+
+  // 清除哈希部分（去掉 # 后面的内容）
+  url.hash = '';
+
   // 不刷新的情况下更新地址
   window.history.replaceState({}, '', url.toString());
 }
@@ -291,6 +295,7 @@ function renderPage(pageIndex) {
 
   rewriteMkdocsNav();
   rewriteMainTitle();
+  rewriteMkdocsToc();
 }
 
 function updatePageInfo() {
@@ -458,4 +463,57 @@ function rewriteMainTitle() {
     if (h1.innerText.includes(label)) {
         h1.innerText = `示例 (TPO ${currentPage})`;
     }
+}
+
+function rewriteMkdocsToc() {
+  const container = document.querySelector('.md-nav.md-nav--secondary');
+  const article = document.querySelector('.md-typeset');
+  if (!container || !article) return;
+
+  // 清空旧 toc（避免重复）
+  container.innerHTML = "";
+
+  // 1. 创建 Toc 标题 label
+  const label = document.createElement('label');
+  label.className = 'md-nav__title';
+  label.setAttribute('for', '__toc');
+  label.innerHTML = `
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+  `;
+  container.appendChild(label);
+
+  // 2. 创建 TOC ul
+  const ul = document.createElement('ul');
+  ul.className = 'md-nav__list';
+  ul.dataset.mdComponent = 'toc';
+  container.appendChild(ul);
+
+  // 3. 找到所有 h2
+  const h2s = article.querySelectorAll('h2');
+
+  h2s.forEach(h2 => {
+    // h2 文本
+    const title = h2.textContent.trim();
+
+    // 生成 id（简单 slug，可根据需要增强）
+    const id = title.replace(/\s+/g, '-').replace(/[^\w\-]/g, '').toLowerCase();
+
+    // 给 h2 设置 id
+    h2.id = id;
+
+    // 生成 li
+    const li = document.createElement('li');
+    li.className = 'md-nav__item';
+
+    li.innerHTML = `
+      <a href="#${id}" class="md-nav__link">
+        <span class="md-ellipsis">
+          ${title}
+        </span>
+      </a>
+    `;
+
+    ul.appendChild(li);
+  });
 }
