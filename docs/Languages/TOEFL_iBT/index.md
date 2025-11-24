@@ -45,6 +45,10 @@ hide:
 
 <div class="grid cards compact-grid-single-row" markdown>
 
+-   __介绍__
+
+    [:octicons-arrow-right-24: 了解更多](Listening/Intro.md)
+
 -   __椅听法__
 
     [:octicons-arrow-right-24: 了解更多](Listening/ChairListeningMethod.md)
@@ -53,5 +57,21 @@ hide:
 
 ## :material-account-voice:{ .lg .middle } &nbsp; __托福口语__
 
+<div class="grid cards compact-grid-single-row" markdown>
+
+-   __介绍__
+
+    [:octicons-arrow-right-24: 了解更多](Speaking/Intro.md)
+
+</div>
+
 ## :material-pen:{ .lg .middle } &nbsp; __托福写作__
+
+<div class="grid cards compact-grid-single-row" markdown>
+
+-   __介绍__
+
+    [:octicons-arrow-right-24: 了解更多](Writing/Intro.md)
+
+</div>
 
