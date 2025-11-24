@@ -1,3 +1,10 @@
+function splitAfterColon(strings) {
+    return strings.map(str => {
+        const index = str.indexOf(':');
+        return index === -1 ? str : str.substring(index + 1);
+    });
+}
+
 function RenderTask(taskText, taskSetting) {
     const container = document.getElementById("text-container");
     container.innerHTML = ""; // 清空旧内容
@@ -15,17 +22,15 @@ function RenderTask(taskText, taskSetting) {
         container.appendChild(p);
     };
 
-    const renderDialogueLine = (line, index) => {
+    const renderDialogueLine = (line, index, parent) => {
         const wrapper = document.createElement("div");
-        // 偶数 incoming，奇数 outgoing
-        const cls = index % 2 === 0 ? "message incoming" : "message outgoing";
+        wrapper.className = index % 2 === 0 ? "message incoming" : "message outgoing";
 
-        wrapper.className = cls;
+        const p = document.createElement("p");
+        p.textContent = line;
 
-        const p = createEl("p", line);
         wrapper.appendChild(p);
-
-        container.appendChild(wrapper);
+        parent.appendChild(wrapper);
     };
 
     // ========== 1. 渲染 Task 标题 ==========
@@ -55,11 +60,13 @@ function RenderTask(taskText, taskSetting) {
 
     // ========== 3. 判断存在 Listening ==========
     if (taskSetting.hasListening === "1") {
+
+        container.appendChild(document.createElement('hr'));
+
         const hListening = createEl("p", "Listening", "section-title");
         container.appendChild(hListening);
 
-        const listening = taskText.Listening;
-
+        const listening = splitAfterColon(taskText.Listening);
         let startIdx = 0;
 
         if (taskSetting.listeningFirstIsIntro === "1") {
@@ -68,10 +75,27 @@ function RenderTask(taskText, taskSetting) {
             startIdx = 1;
         }
 
+        const chatCard = document.createElement("div");
+        chatCard.className = "chat-card";
+
+        const chatHeader = document.createElement("div");
+        chatHeader.className = "chat-header";
+        const headerTitle = document.createElement("div");
+        headerTitle.className = "h2";
+        headerTitle.textContent = "聊天记录";
+        chatHeader.appendChild(headerTitle);
+
+        const chatBody = document.createElement("div");
+        chatBody.className = "chat-body";
+
+        chatCard.appendChild(chatHeader);
+        chatCard.appendChild(chatBody);
+        container.appendChild(chatCard);
+
         if (taskSetting.listeningIsDialogue === "1") {
             // 对话（跳过 intro 行）
             for (let i = startIdx; i < listening.length; i++) {
-                renderDialogueLine(listening[i], i - startIdx);
+                renderDialogueLine(listening[i], i - startIdx, chatBody);
             }
         } else {
             // 普通段落
@@ -83,10 +107,10 @@ function RenderTask(taskText, taskSetting) {
 
     // ========== 4. Texts 部分渲染 ==========
     if (taskSetting.hasTexts === "1") {
-        const hTexts = createEl("p", "Texts", "section-title");
-        container.appendChild(hTexts);
+        const chatCard = document.createElement("div");
+        chatCard.className = "chat-card";
 
-        const texts = taskText.Texts;
+        const texts = splitAfterColon(taskText.Texts);
         let startIdx = 0;
 
         if (taskSetting.textsFirstIsIntro === "1") {
@@ -95,9 +119,23 @@ function RenderTask(taskText, taskSetting) {
             startIdx = 1;
         }
 
+        const chatHeader = document.createElement("div");
+        chatHeader.className = "chat-header";
+        const headerTitle = document.createElement("div");
+        headerTitle.className = "h2";
+        headerTitle.textContent = "Texts";
+        chatHeader.appendChild(headerTitle);
+
+        const chatBody = document.createElement("div");
+        chatBody.className = "chat-body";
+
+        chatCard.appendChild(chatHeader);
+        chatCard.appendChild(chatBody);
+        container.appendChild(chatCard);
+
         if (taskSetting.textsIsDialogue === "1") {
             for (let i = startIdx; i < texts.length; i++) {
-                renderDialogueLine(texts[i], i - startIdx);
+                renderDialogueLine(texts[i], i - startIdx, chatBody);
             }
         } else {
             for (let i = startIdx; i < texts.length; i++) {

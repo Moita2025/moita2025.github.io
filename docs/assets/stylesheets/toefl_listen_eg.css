@@ -13,3 +13,72 @@
     font-style: italic;
     opacity: 0.8;
 }
+
+/* From Uiverse.io by ahmed150up */ 
+.chat-card {
+  width: 500px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: auto;
+}
+
+.chat-header {
+  padding: 10px;
+  background-color: #f2f2f2;
+  display: flex;
+  align-items: center;
+}
+
+.chat-header .h2 {
+  font-size: 16px;
+  color: #333;
+}
+
+.chat-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  width: fit-content; /* 替代 max-width */
+}
+
+.incoming {
+  align-self: flex-start;
+  background-color: #e1e1e1;
+  max-width: 350px;
+  margin-right: auto;
+}
+
+.outgoing {
+  align-self: flex-end;
+  background-color: #f2f2f2;
+  text-align: right;
+  max-width: 350px;
+  margin-left: auto;
+}
+
+.message p {
+  font-size: 14px;
+  color: #333;
+  margin: 0;
+}
+
+/* 手机端响应式样式 */
+@media (max-width: 768px) {
+  .chat-card {
+    width: 95%;
+    max-width: 95%;
+  }
+
+  .incoming,
+  .outgoing {
+    max-width: 250px;
+  }
+}
