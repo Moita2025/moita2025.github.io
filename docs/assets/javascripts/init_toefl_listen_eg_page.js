@@ -288,18 +288,22 @@ function renderPage(pageIndex) {
 
   // 同步 URL search param: ?TPO=该页对应的 TPO 编号
   setTpoSearchParam(tpoEntry.TPO);
+
+  rewriteMkdocsNav();
+  rewriteMainTitle();
 }
 
 function updatePageInfo() {
-  const pageInfoEl = document.getElementById('page-info');
-  const pageInputEl = document.getElementById('page-input');
+  const pageInfoEls = document.querySelectorAll('.page-info_duplicate');
+  const pageInputEls = document.querySelectorAll('.page-input_duplicate');
 
-  if (pageInfoEl) {
-    pageInfoEl.textContent = `第 ${currentPage} 页 / 共 ${totalPages} 页`;
-  }
-  if (pageInputEl) {
-    pageInputEl.value = currentPage;
-  }
+  pageInfoEls.forEach(el => {
+    el.textContent = `第 ${currentPage} 页 / 共 ${totalPages} 页`;
+  });
+
+  pageInputEls.forEach(input => {
+    input.value = currentPage;
+  });
 }
 
 // 公共跳转函数
@@ -316,36 +320,47 @@ function goToPage(page) {
 
 // 绑定分页器按钮
 function setupPaginator() {
-  const prevBtn = document.getElementById('prev-page');
-  const nextBtn = document.getElementById('next-page');
-  const goBtn = document.getElementById('go-page');
-  const pageInputEl = document.getElementById('page-input');
+  const paginators = document.querySelectorAll('.paginator_duplicate');
 
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      if (currentPage > 1) {
-        renderPage(currentPage - 1);
+  paginators.forEach(p => {
+    const prevBtn = p.querySelector('.prev-page_duplicate');
+    const nextBtn = p.querySelector('.next-page_duplicate');
+    const goBtn = p.querySelector('.go-page_duplicate');
+    const pageInputEl = p.querySelector('.page-input_duplicate');
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+          renderPage(currentPage - 1);
+          syncPaginatorInputs();
+          scrollTo(0, 0);
+        }
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+          renderPage(currentPage + 1);
+          syncPaginatorInputs();
+          scrollTo(0, 0);
+        }
+      });
+    }
+
+    if (goBtn && pageInputEl) {
+      goBtn.addEventListener('click', () => {
+        goToPage(pageInputEl.value);
+        syncPaginatorInputs();
         scrollTo(0,0);
-      }
-    });
-  }
+      });
+    }
+  });
+}
 
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      if (currentPage < totalPages) {
-        renderPage(currentPage + 1);
-        scrollTo(0,0);
-      }
-    });
-  }
-
-  if (goBtn && pageInputEl) {
-    goBtn.addEventListener('click', () => {
-      const input = pageInputEl.value;
-      goToPage(input);
-      scrollTo(0,0);
-    });
-  }
+function syncPaginatorInputs() {
+  document.querySelectorAll('.paginator_duplicate .page-input_duplicate')
+    .forEach(input => input.value = currentPage);
 }
 
 // ===================== 6. 初始化逻辑 =====================
@@ -410,3 +425,37 @@ async function initToeflListenPage() {
 
 // DOM Ready 后启动
 document.addEventListener('DOMContentLoaded', initToeflListenPage);
+
+function rewriteMkdocsNav() {
+    const label = "示例";
+    const selector = ".md-sidebar--primary .md-nav__item a";
+
+    document.querySelectorAll(selector).forEach(a => {
+
+        const url = new URL(a.href, location.origin);
+
+        // 在 span 中添加 "(xxx词汇)"
+        const span = a.querySelector("span");
+
+        if (
+            span && span.innerText.includes(label)
+        ) 
+        {
+            // 添加 en_words 参数
+            url.searchParams.set("TPO", currentPage);
+            a.href = url.toString();
+
+            span.innerText = `示例 (TPO ${currentPage})`;
+        }
+    });
+}
+
+function rewriteMainTitle() {
+    const h1 = document.querySelector(".md-typeset h1");
+    if (!h1) return;
+
+    const label = "示例";
+    if (h1.innerText.includes(label)) {
+        h1.innerText = `示例 (TPO ${currentPage})`;
+    }
+}
