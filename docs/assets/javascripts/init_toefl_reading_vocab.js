@@ -141,7 +141,7 @@ class TOEFLVocabViewer {
                 const item = pageWords[idx];
                 if (item) {
                     const word = item.word;
-                    const link = `/Languages/English_Vocab/Word_Detail/?word=${encodeURIComponent(word)}&collection=${this.dictKey}`;
+                    const link = `/Languages/English_Vocab/WordDetail/?word=${encodeURIComponent(word)}&collection=${this.dictKey}`;
                     html += `<td><a href="${link}" class="vocab-word-link" target="_blank"><strong>${word}</strong></a></td>`;
                 } else {
                     html += `<td></td>`;

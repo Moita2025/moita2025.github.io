@@ -47,7 +47,11 @@ function renderPage(page, colFactor = 2, isColArrange = false) {
             const item = pageWords[index];
 
             if (item) {
-                html += `<td>${item.word}</td><td>${item.translations[0].translation}</td>`;
+                html += `
+                <td><a href="/Languages/English_Vocab/WordDetail/?word=${item.word}&collection=${window.currentWordKey}" target="_blank">
+                <strong>${item.word}<strong></a></td>
+                <td>${item.translations[0].translation}</td>
+                `;
             } else {
                 //html += `<td></td><td></td>`; // 空位填充
             }

@@ -57,6 +57,7 @@ nav:
       - Languages/index.md
       - 英语词汇:
           - Languages/English_Vocab/Words.md
+          - Languages/English_Vocab/WordDetail.md
           - Languages/English_Vocab/Practice_en2zh_mcq.md
       - 托福:
           - Languages/TOEFL_iBT/index.md
