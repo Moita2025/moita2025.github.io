@@ -60,7 +60,12 @@ Utils.url.updateSearchParams = function(params = {}, options = {}){
 
 ////////str
 
-
+Utils.str.escapeHTML = function(str){
+    if (typeof str !== 'string') return str;
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+}
 
 ////////ui
 
@@ -170,6 +175,59 @@ Utils.ui.fuseSearchInit = function(config = {}){
             Utils.url.updateSearchParams({ search: "" });
         });
     }
+}
+
+Utils.ui.generateSwitchListHTML = function(config){
+    const {
+        keyToDataMap = null,
+        renderItem = null,
+        linkText = '切换',
+        containerClass = 'grid cards compact-grid-single-row'
+    } = config;
+
+    let listHTML = '<ul>';
+
+    Object.keys(config.keyToNameMap).forEach(key => {
+        if (key === config.currentKey) return; // 排除当前项
+
+        const name = config.keyToNameMap[key];
+        const data = keyToDataMap ? keyToDataMap[key] : null;
+        const url  = config.buildUrl(key, data);
+
+        if (typeof renderItem === 'function') {
+            // 完全自定义渲染
+            listHTML += renderItem({ key, name, url, data });
+        } else {
+            // 默认简洁渲染
+            listHTML += `
+              <li>
+                <p><strong>${Utils.str.escapeHTML(name)}</strong></p>
+                <p><a href="${Utils.str.escapeHTML(url)}">${Utils.str.escapeHTML(linkText)}</a></p>
+              </li>
+            `;
+        }
+    });
+
+    listHTML += '</ul>';
+
+    return `
+      <h2>${Utils.str.escapeHTML(config.title)}</h2>
+      <div class="${Utils.str.escapeHTML(containerClass)}">
+        ${listHTML}
+      </div>
+    `;
+}
+
+Utils.ui.bindDlg2Btn = function(btnSelector, dlgContent){
+    document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.querySelector(btnSelector);
+
+        if (btn) {
+            btn.addEventListener("click", () => {
+                showDialog(dlgContent);
+            });
+        }
+    });
 }
 
 ////////vocab
