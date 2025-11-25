@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
 
       const link = document.createElement("a");
-      link.href = `/vocab?article=${ParamName}`;
+      link.href = `../ArticleVocab/?article=${ParamName}`;
       link.target = "_blank";
       link.textContent = displayTitle;
       link.style.color = "var(--md-primary-fg-color)";
