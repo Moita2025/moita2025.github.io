@@ -4,6 +4,8 @@
 
 ---
 
+<button id="switch-words" class="ui-btn">切换其他词汇</button>
+
 <div id="data-holder"></div>
 
 <!-- 测试 UI 的容器 -->
