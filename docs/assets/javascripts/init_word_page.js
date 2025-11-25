@@ -15,26 +15,15 @@ const rewrite_nav_keywords = [
 ];
 
 // ==============================
-// 2. 获取 URL 参数对应的词库 key
-// ==============================
-function resolveWordKey() {
-    const params = new URLSearchParams(window.location.search);
-    const key = params.get("en_words");
-
-    // 判断是否有效
-    if (key && window.Utils.vocab.WORD_JSON_MAP[key]) {
-        return key;
-    }
-    return "junior"; // 默认
-}
-
-
-// ==============================
 // 3. 初始化词库加载（核心对外函数）
 // ==============================
 async function initWordsGeneric(eventName, onLoaded = null) {
     // 获取使用的 key
-    const key = resolveWordKey();
+    const key = window.Utils.url.getSearchParam({
+        paramName: "en_words",
+        map: window.Utils.vocab.WORD_JSON_MAP,
+        defaultParam: "junior"
+    });
     const jsonFile = window.Utils.vocab.WORD_JSON_MAP[key];
 
     // 记录使用的 key

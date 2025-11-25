@@ -8,6 +8,23 @@ window.Utils = {
 
 ////////url
 
+Utils.url.getSearchParam = function(config = {}){
+
+    const params = new URLSearchParams(window.location.search);
+    const key = params.get(config.paramName);
+
+    if (config.map) 
+    {
+        if (key && config.map[key]) return key;
+    }
+    else
+    {
+        if (key) return key;
+    }
+    
+    return config.defaultParam; // 默认
+}
+
 Utils.url.updateSearchParams = function(params = {}, options = {}){
     const {
         clearHash = true,
