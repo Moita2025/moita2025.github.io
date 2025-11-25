@@ -1,103 +1,29 @@
 function search_init()
 {
-    // ==== 1. 确保数据存在 ===================================================
-    if (window.words == []) {
-        console.log("words == []");
-        return ;
-    }
+    const search_config = {
+        wordsKey: 'words', // window 对象中存放数据的属性名
+        fuseKeys: ['word', 'translations.translation', 'phrases.phrase', 'phrases.translation'],
+        fuseThreshold: 0.3, // Fuse.js threshold 配置
 
-    // ==== 2. 初始化 Fuse.js ==================================================
-    const fuse = new Fuse(window.words, {
-        keys: ['word','translations.translation','phrases.phrase','phrases.translation'],
-        threshold: 0.3,
-    });
+        inputElId: 'word-search-input',
+        searchBtnId: 'word-search-btn',
+        clearBtnId: 'word-clear-btn',
 
-    // ==== 3. DOM ==============================================================
-    const inputEl = document.getElementById("word-search-input");
-    const searchBtn = document.getElementById("word-search-btn");
-    const clearBtn = document.getElementById("word-clear-btn");
-    const resultList = document.getElementById("search-result-list");
+        pattern: /^[A-Za-z]+$/,
 
-    // ==== 4. 搜索函数 ========================================================
-    function doSearch() {
-        const keyword = inputEl.value.trim();
-        resultList.innerHTML = "";
-
-        //console.log("here");
-
-        if (!keyword) return;
-
-        const results = fuse.search(keyword);
-
-        const uniqueResults = [];
-        const seenWords = new Set();
-        for (const result of results) {
-            const word = result.item.word;
-            if (!seenWords.has(word)) {
-                seenWords.add(word);
-                uniqueResults.push(result);
-            }
-        }
-
-        const max = 20;
-        const realCount = Math.min(uniqueResults.length, max);
-
-        for (let i = 0; i < realCount; i++) {
-            const item = uniqueResults[i].item;
-            const li = document.createElement("li");
-            li.innerHTML = `
+        resultListId: 'search-result-list',
+        maxResults: 20, // 最多显示 20 条
+        liInnerHTML: (item) => `
             <a href="/Languages/English_Vocab/WordDetail/?word=${item.word}&collection=${window.currentWordKey}" target="_blank">
-                <strong>${item.word}</strong></a>：${item.translations[0].translation}`;
-            resultList.appendChild(li);
-        }
+                <strong>${item.word}</strong>
+            </a>：${item.translations[0].translation}`,
+        
+            overflowText: '…',
+        overflowOpacity: 0.6,
+        overflowFontWeight: 'bold'
+    };
 
-        // 超过 20 条，追加 “…”（占 1 个 li）
-        if (uniqueResults.length > max) {
-            const li = document.createElement("li");
-            li.textContent = "…";
-            li.style.opacity = "0.6";
-            li.style.fontWeight = "bold";
-            resultList.appendChild(li);
-        }
-
-        window.Utils.url.updateSearchParams({ search: keyword });
-    }
-
-    const params = new URLSearchParams(window.location.search);
-    const urlKeyword = params.get("search");
-
-    if (urlKeyword && /^[A-Za-z]+$/.test(urlKeyword)) {
-        inputEl.value = urlKeyword;
-        doSearch();   // 自动搜索
-    }
-
-    // ==== 5. 事件 =============================================================
-
-    // 添加按钮点击事件
-    if (searchBtn) {
-        searchBtn.addEventListener("click", () => {
-        doSearch();
-        });
-    }
-
-    // 添加Enter键事件
-    if (inputEl) {
-        inputEl.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-            doSearch();
-        }
-        });
-    }
-
-    if (!clearBtn) return;
-
-    clearBtn.addEventListener("click", () => {
-        inputEl.value = "";
-        resultList.innerHTML = "";
-        inputEl.focus();
-
-        window.Utils.url.updateSearchParams({ search: "" });
-    });
+    window.Utils.ui.fuseSearchInit(search_config);
 }
 
 if (typeof window.blogStatusDict !== "undefined" &&
