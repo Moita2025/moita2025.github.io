@@ -256,7 +256,7 @@ async function initToeflReadPage() {
   // 如果不是本地 https 环境：只展示 sample 示例 + 简单分页信息
   if (!isLocalHttps()) {
     // sampleTaskText / sampleSetting 从你的 html 中的 <script> 里拿
-    RenderTask(sampleArticle);
+    RenderArticle(sampleArticle);
     currentPage = 1;
     totalPages = 1;
     updatePageInfo();
