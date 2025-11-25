@@ -65,6 +65,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+window.currentWordKey = window.Utils.url.getSearchParam({
+    paramName: "en_words", 
+    defaultParam: "junior"
+});
+
 window.Utils.ui.bindDlg2Btn("#switch-words", 
     window.Utils.ui.generateSwitchListHTML({
         title: '切换词汇表',

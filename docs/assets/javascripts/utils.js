@@ -17,10 +17,7 @@ Utils.url.getSearchParam = function(config = {}){
     {
         if (key && config.map[key]) return key;
     }
-    else
-    {
-        if (key) return key;
-    }
+    else if (key) {return key;}
     
     return config.defaultParam; // 默认
 }
