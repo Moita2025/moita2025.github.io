@@ -39,43 +39,43 @@ hide:
 
     ---
 
-    [:octicons-arrow-right-24: 了解更多](English_Vocab/Words.md?en_words=junior)
+    [:octicons-arrow-right-24: 了解更多](English_Vocab/Words.md?collections=junior)
 
 -   📗 &nbsp; __高中词汇（Senior Vocab）__
 
     ---
 
-    [:octicons-arrow-right-24: 了解更多](English_Vocab/Words.md?en_words=senior)
+    [:octicons-arrow-right-24: 了解更多](English_Vocab/Words.md?collections=senior)
 
 -   4️⃣ &nbsp; __四级词汇（CET4 Vocab）__
 
     ---
 
-    [:octicons-arrow-right-24: 了解更多](English_Vocab/Words.md?en_words=cet4)
+    [:octicons-arrow-right-24: 了解更多](English_Vocab/Words.md?collections=cet4)
 
 -   6️⃣ &nbsp; __六级词汇（CET6 Vocab）__
 
     ---
 
-    [:octicons-arrow-right-24: 了解更多](English_Vocab/Words.md?en_words=cet6)
+    [:octicons-arrow-right-24: 了解更多](English_Vocab/Words.md?collections=cet6)
 
 -   🎓 &nbsp; __考研词汇（PG Vocab）__
 
     ---
 
-    [:octicons-arrow-right-24: 了解更多](English_Vocab/Words.md?en_words=pg)
+    [:octicons-arrow-right-24: 了解更多](English_Vocab/Words.md?collections=pg)
 
 -   🌍 &nbsp; __托福词汇（TOEFL Vocab）__
 
     ---
 
-    [:octicons-arrow-right-24: 了解更多](English_Vocab/Words.md?en_words=toefl)
+    [:octicons-arrow-right-24: 了解更多](English_Vocab/Words.md?collections=toefl)
 
 -   ✏️ &nbsp; __SAT词汇（SAT Vocab）__
 
     ---
 
-    [:octicons-arrow-right-24: 了解更多](English_Vocab/Words.md?en_words=sat)
+    [:octicons-arrow-right-24: 了解更多](English_Vocab/Words.md?collections=sat)
 
 </div>
 

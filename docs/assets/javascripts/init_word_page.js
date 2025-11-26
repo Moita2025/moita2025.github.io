@@ -20,7 +20,7 @@ const rewrite_nav_keywords = [
 async function initWordsGeneric(eventName, onLoaded = null) {
     // 获取使用的 key
     const key = window.Utils.url.getSearchParam({
-        paramName: "en_words",
+        paramName: "collection",
         map: window.Utils.vocab.WORD_JSON_MAP,
         defaultParam: "junior"
     });
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
         rewrite_nav_items: rewrite_nav_keywords,
         key: window.currentWordKey,
         label: window.currentWordLabel,
-        paramName: "en_words"
+        paramName: "collection"
     });
     window.Utils.mkdocsRewrite.rewriteMainTitle({
         label: window.currentWordLabel
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 window.currentWordKey = window.Utils.url.getSearchParam({
-    paramName: "en_words", 
+    paramName: "collection", 
     defaultParam: "junior"
 });
 
@@ -76,6 +76,6 @@ window.Utils.ui.bindDlg2Btn("#switch-words",
         currentKey: window.currentWordKey,
         keyToNameMap: window.Utils.vocab.WORD_NAME_MAP,
         keyToDataMap: window.Utils.vocab.WORD_JSON_MAP,
-        buildUrl: (key) => `?en_words=${encodeURIComponent(key)}`
+        buildUrl: (key) => `?collection=${encodeURIComponent(key)}`
     })
 );
