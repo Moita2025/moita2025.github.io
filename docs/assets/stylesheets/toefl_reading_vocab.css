@@ -1,5 +1,5 @@
-.toefl-vocab-header { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0; margin-bottom:0; }
+.toefl-vocab-header { flex-direction: column;display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0; margin-bottom:0; }
 .vocab-controls button, .vocab-controls input { margin:0 4px; }
 #page-input { width:60px; text-align:center; }
-#toefl-vocab-container{ margin-top: 0; text-align: center; }
+.words-table-container{ margin-top: 1em; text-align: center; }
 .toefl-vocab-header h2 { margin: auto; }

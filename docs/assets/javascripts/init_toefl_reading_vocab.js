@@ -1,191 +1,146 @@
-class TOEFLVocabViewer {
-    constructor(config = {}) {
-        const {
-            containerId = 'words-table-container',
-            pageSize = 36,
-            columns = 3
-        } = config;
+// init_toefl_reading_vocab.js
+document.addEventListener("DOMContentLoaded", async () => {
+    // 1. 核心映射表（最清晰、最易维护）
+    const TAB_TEXT_TO_COLLECTION = {
+        "托福词汇": "toefl",
+        "六级词汇": "cet6",
+        "四级词汇": "cet4",
+        "高中词汇": "senior",
+        "初中词汇": "junior"
+    };
 
-        this.containerId = containerId;
-        this.pageSize = pageSize;
-        this.columns = columns;  // 每行显示几个单词（colFactor）
+    const COLLECTION_TO_JSON_KEY = {
+        toefl:  "TOEFL",
+        cet6:   "CET6",
+        cet4:   "CET4",
+        senior: "Senior",
+        junior: "Junior"
+    };
 
-        this.words = [];
-        this.articleName = '';
-        this.collection = 'toefl';
-        
-        this.init();
-    }
+    const TABLE_IDS = {
+        toefl:  "table-toefl",
+        cet6:   "table-cet6",
+        cet4:   "table-cet4",
+        senior: "table-senior",
+        junior: "table-junior"
+    };
 
-    async init() {
-        this.readURLParams();
-        await this.loadArticleWords();
-        if (this.words.length > 0) {
-            this.setupPaginationAndRender();
-        } else if (this.words.length === 0 && this.articleName) {
-            // 即使没词也显示空表格 + 提示
-            this.setupPaginationAndRender();
-        }
-    }
+    const article_title = "toefl-vocab-header";
 
-    readURLParams() {
-        this.articleName = Utils.url.getSearchParam({ 
-            paramName: "article",
-            defaultParam: "timberline_vegetation_on_mountains"
-        });
-        this.collection = Utils.url.getSearchParam({ 
-            paramName: "collection", 
-            defaultParam: 'toefl'
-        });
-    }
+    let currentCollection = 'toefl';
 
-    async loadArticleWords() {
-        if (!this.articleName) {
-            this.showError('未指定文章参数：?article=xxx');
-            return;
-        }
-
-        let articleTitle = this.articleName;
-        try {
-            // 1. 查索引获取真实标题
-            const idxRes = await fetch('/assets/data/toefl_data/toefl_reading_articles_index.json');
-            if (idxRes.ok) {
-                const index = await idxRes.json();
-                const match = index.find(i => i.ParamName === this.articleName);
-                if (match) articleTitle = match.Article || match.KeyName;
-            }
-
-            // 2. 加载所有文章生词数据
-            const res = await fetch('/assets/data/toefl_data/toefl_reading_articles_words.json');
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            const allData = await res.json();
-
-            const articleData = allData.find(item => item.Article === articleTitle);
-            if (!articleData) throw new Error(`未找到文章数据：${articleTitle}`);
-
-            const collectionMap = { 
-                junior: 'Junior', 
-                senior: 'Senior', 
-                cet4: 'CET4', 
-                cet6: 'CET6', 
-                toefl: 'TOEFL' 
-            };
-            const key = collectionMap[this.collection] || 'TOEFL';
-            const wordArray = articleData.Words[key] || [];
-
-            this.words = wordArray.map(w => ({ word: w }));
-        } catch (err) {
-            this.showError(`加载生词失败<br>文章：${this.articleName}<br>错误：${err.message}`);
-            console.error(err);
-            this.words = [];
-        }
-    }
-
-    setupPaginationAndRender() {
-        Utils.ui.pagination.init({
-            totalItems: 0,
-            pageSize: this.pageSize,
-            onChange: (page) => {
-                this.currentPage = page;
-                this.render();
-                window.scrollTo(0, 0);
-            }
-        });
-
-        Utils.ui.pagination.updateTotalPages(this.words.length, this.pageSize);
-        Utils.ui.pagination.updateUrl();
-        Utils.ui.pagination.updateUI();
-
-        this.render();
-    }
-
-    render() {
-        const container = document.getElementById(this.containerId);
-        if (!container) return;
-
-        const currentPage = Utils.ui.pagination.currentPage;
-        const collectionDisplayName = window.Utils.vocab.WORD_NAME_MAP[this.collection] || this.collection.toUpperCase();
-
-        const header = document.querySelector(".toefl-vocab-header");
-        if (header) {
-            header.innerHTML = `
-                <h2>${this.getDisplayTitle()} </h2>
-                <h2>
-                    ${collectionDisplayName}（第 ${currentPage}/${Utils.ui.pagination.totalPages} 
-                    页，共 ${this.words.length} 词）
-                </h2>
-            `;
-        }
-
-        // 关键：传完整 this.words + 当前页码，让 renderTable 自己切片！
-        window.Utils.ui.renderTable(this.words, currentPage, {
-            containerId: this.containerId,
-            pageSize: this.pageSize,           // 36
-            colFactor: this.columns,           // 3
-            headerTitles: ["单词"],
-            isColArrange: false,
-            emptyCell: '<td></td>',
-            renderCell: (item) => `
-                <td>
-                    ${window.Utils.vocab.getWordLink(item.word, this.collection)}
-                </td>
-            `
-        });
-
-        this.bindSwitchDictButton();
-    }
-
-    bindSwitchDictButton() {
-        const btn = document.getElementById('switch-dict');
-        if (!btn) return;
-
-        const displayName = window.Utils.vocab.WORD_NAME_MAP[this.collection] || this.collection.toUpperCase();
-        btn.textContent = `切换词库（当前：${displayName})`;
-
-        btn.onclick = async () => {
-            const allKeys = Object.keys(window.Utils.vocab.WORD_NAME_MAP);
-            const validKeys = allKeys.filter(k => !['pg', 'sat'].includes(k));
-            const currentIdx = validKeys.indexOf(this.collection);
-            const next = validKeys[(currentIdx + 1) % validKeys.length];
-
-            Utils.url.updateSearchParams({
-                collection: next,
-                page: null  // 回到第一页
-            });
-
-            this.collection = next;
-            Utils.ui.pagination.currentPage = 1;
-            await this.loadArticleWords();
-            this.setupPaginationAndRender();
-        };
-    }
-
-    getDisplayTitle() {
-        const map = {
-            'groundwater_tpo01': 'Groundwater (TPO01)',
-            'groundwater_tpo28': 'Groundwater (TPO28)',
-        };
-        const raw = map[this.articleName] || this.articleName;
-        return raw.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-    }
-
-    showError(msg) {
-        const container = document.getElementById(this.containerId);
-        if (container) {
-            container.innerHTML = `
-                <div style="text-align:center;padding:4rem;color:var(--md-default-fg-color--light)">
-                    <h3>加载失败</h3>
-                    <p>${msg}</p>
-                    <p><a href="../ArtiSubjClasList/">返回分类表</a></p>
-                </div>`;
-        }
-    }
-}
-
-// 启动
-document.addEventListener("DOMContentLoaded", () => {
-    window.toeflViewer = new TOEFLVocabViewer({
-        pageSize: 36,
-        columns: 3
+    // 3. 获取文章标题
+    const articleParam = Utils.url.getSearchParam({
+        paramName: "article",
+        defaultParam: "timberline_vegetation_on_mountains"
     });
+
+    let articleTitle = articleParam;
+    try {
+        const idx = await fetch('/assets/data/toefl_data/toefl_reading_articles_index.json').then(r => r.json());
+        const match = idx.find(i => i.ParamName === articleParam);
+        if (match) articleTitle = match.Article || match.KeyName;
+    } catch (e) {
+        console.warn("索引加载失败", e);
+    }
+
+    // 4. 加载所有生词数据
+    let allWords = {};
+    try {
+        const res = await fetch('/assets/data/toefl_data/toefl_reading_articles_words.json');
+        const data = await res.json();
+        const articleData = data.find(d => d.Article === articleTitle);
+        if (!articleData) throw new Error("文章未找到");
+
+        for (const [collection, jsonKey] of Object.entries(COLLECTION_TO_JSON_KEY)) {
+            allWords[collection] = (articleData.Words[jsonKey] || []).map(w => ({ word: w }));
+        }
+    } catch (err) {
+        document.getElementById("failInfo").innerHTML = `
+            <div style="text-align:center;padding:4rem;color:#999">
+                <h3>加载失败</h3><p>${err.message}</p>
+            </div>`;
+        return;
+    }
+
+    // 5. 设置主标题
+    const niceTitle = articleTitle.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    document.querySelector(`.${article_title}`).innerHTML = `<h2>${niceTitle}</h2>`;
+
+    // 6. 核心渲染函数
+    const renderCurrent = (page = 1) => {
+        const words = allWords[currentCollection] || [];
+        const displayName = window.Utils.vocab.WORD_NAME_MAP[currentCollection] || currentCollection.toUpperCase();
+
+        // 更新副标题
+        const subHeader = document.querySelector(`.${article_title} h2:nth-child(2)`);
+        if (subHeader) subHeader.remove();
+        document.querySelector(`.${article_title}`).insertAdjacentHTML("beforeend",
+            `<h2>${displayName}（第 ${page}/${Utils.ui.pagination.totalPages} 页，共 ${words.length} 词）</h2>`);
+
+        Utils.ui.renderTable(words, page, {
+            containerId: TABLE_IDS[currentCollection],
+            pageSize: 36,
+            colFactor: 3,
+            headerTitles: ["单词"],
+            emptyCell: '<td></td>',
+            renderCell: item => `<td>${window.Utils.vocab.getWordLink(item.word.toLowerCase(), currentCollection)}</td>`
+        });
+    };
+
+    // 7. 初始化分页器（只一次！）
+    Utils.ui.pagination.init({
+        totalItems: allWords[currentCollection].length,
+        pageSize: 36,
+        onChange: renderCurrent
+    });
+
+    // 8. 精准监听 Tab 点击（Material for MkDocs 标准结构）
+    document.addEventListener("click", e => {
+        const tabLink = e.target.closest('.tabbed-set .tabbed-labels label');
+
+        if (!tabLink) return;
+
+        const tabText = tabLink.querySelector('a').textContent.trim();
+        const newCollection = TAB_TEXT_TO_COLLECTION[tabText];
+        if (!newCollection || newCollection === currentCollection) return;
+
+        // 切换词库
+        currentCollection = newCollection;
+
+        // 更新 URL
+        Utils.url.updateSearchParams({
+            collection: currentCollection === "toefl" ? null : currentCollection,
+            page: null
+        });
+
+        // 更新分页器 + 渲染
+        Utils.ui.pagination.updateTotalPages(allWords[currentCollection].length, 36);
+        Utils.ui.pagination.currentPage = 1;
+        Utils.ui.pagination.updateUI();
+        renderCurrent(1);
+
+        console.log('here');
+    });
+
+    // 9. 首次渲染 + 支持 URL 直接打开指定词库
+    const urlCollection = Utils.url.getSearchParam({ paramName: "collection" });
+    if (urlCollection && TAB_TEXT_TO_COLLECTION[Object.keys(TAB_TEXT_TO_COLLECTION).find(k => 
+        TAB_TEXT_TO_COLLECTION[k] === urlCollection)]) {
+        currentCollection = urlCollection;
+    }
+
+    // 确保分页器和渲染正确
+    Utils.ui.pagination.updateTotalPages(allWords[currentCollection].length, 36);
+    renderCurrent(1);
+
+    // 自动选中 URL 对应的 tab（Material for MkDocs 会自动处理，但保险）
+    const targetLabelText = Object.keys(TAB_TEXT_TO_COLLECTION).find(
+        key => TAB_TEXT_TO_COLLECTION[key] === currentCollection
+    );
+    if (targetLabelText) {
+        const link = Array.from(document.querySelectorAll('.tabbed-set label a'))
+            .find(a => a.textContent.trim() === targetLabelText);
+        if (link) link.click();
+    }
 });
