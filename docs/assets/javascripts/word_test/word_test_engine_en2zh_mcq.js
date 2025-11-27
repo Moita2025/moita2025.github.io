@@ -25,18 +25,26 @@ window.TestEngine = {
     get questions() { return this.core.questions; }
 };
 
+window.TestUI = {
+    core: window.Utils.vocab.testUICore,
+    start(type = "EngToZhMultipleChoice") {
+
+        // 2. 设置对应渲染器
+        this.core.setRenderer(window.Utils.vocab.QuestionRenderer[type]);
+
+        // 3. 开始渲染
+        this.core.init();
+        this.core.renderQuestion();
+    }
+};
+
 if (window.blogStatusDict["wordsReady"])
 {
     const words = window.words;
     if (words && words.length >= 200) {
         console.log("生成测试题目...");
         TestEngine.startEngToZhTest(words);
-
-        window.blogStatusDict["testReady"]  = true;
-
-        // 通知 UI：试题准备好了
-        const evt = new CustomEvent("testReady");
-        window.dispatchEvent(evt);
+        TestUI.start("EngToZhMultipleChoice");
     }
 }
 
@@ -46,11 +54,6 @@ window.addEventListener("wordsReady", (e) => {
     if (words && words.length >= 200) {
         console.log("生成测试题目...");
         TestEngine.startEngToZhTest(words);
-
-        window.blogStatusDict["testReady"]  = true;
-
-        // 通知 UI：试题准备好了
-        const evt = new CustomEvent("testReady");
-        window.dispatchEvent(evt);
+        TestUI.start("EngToZhMultipleChoice");
     }
 });

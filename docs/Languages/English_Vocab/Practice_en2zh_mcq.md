@@ -16,4 +16,3 @@
 <script src="/assets/javascripts/third_party/chart.js"></script>
 <script src="/assets/javascripts/word_test/word_practice.js"></script>
 <script src="/assets/javascripts/word_test/word_test_engine_en2zh_mcq.js"></script>
-<script src="/assets/javascripts/word_test/word_test_ui_en2zh_mcq.js"></script>
