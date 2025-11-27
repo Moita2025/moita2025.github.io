@@ -1,55 +1,38 @@
-// ============ 抽题核心状态 ============
-window.TestEngine = {
-    core: window.Utils.vocab.testEngineCore,
+let currentEngineInstance = null;
 
-    startEngToZhTest(words) {
-        try {
-            window.Utils.vocab.QuestionType.EngToZhMultipleChoice.generate(words, 50, 200);
-            console.log("【中英互选】试题已生成，共 50 题");
-        } catch (err) {
-            console.error(err.message);
-        }
-    },
+function startTest(words, type = "EngToZhMultipleChoice") {
+    currentEngineInstance = window.Utils.vocab.QuestionType[type].generate(words, 50, 200);
+    console.log("试题生成成功，共 50 题", currentEngineInstance);
 
-    answer(...args) { return this.core.answer(...args); },
-    hasNext() { return this.core.hasNext(); },
-    getCurrent() { return this.core.getCurrent(); },
-    getResult() { return this.core.getResult(); },
-    getCurrentIdx() {return this.core.currentIndex;},
-    reset() { this.core.reset(); },
-    get ready() { return this.core.ready; },
-    get questions() { return this.core.questions; }
-};
+    // 直接传这个有数据的实例
+    TestUI.start(currentEngineInstance, type);
+}
 
 window.TestUI = {
     core: window.Utils.vocab.testUICore,
-    start(type = "EngToZhMultipleChoice") {
 
-        // 2. 设置对应渲染器
-        this.core.setRenderer(window.Utils.vocab.QuestionRenderer[type]);
+    start(engineInstance, type = "EngToZhMultipleChoice") {
+        if (!engineInstance?.ready) {
+            console.error("引擎实例无效");
+            return;
+        }
 
-        // 3. 开始渲染
-        this.core.init();
+        const renderer = window.Utils.vocab.QuestionRenderer[type];
+        renderer.init?.(engineInstance, this.core);                    // Renderer 也 init
+        this.core.setRenderer(renderer);
+        this.core.init(engineInstance);
+
         this.core.renderQuestion();
     }
 };
 
-if (window.blogStatusDict["wordsReady"])
-{
-    const words = window.words;
-    if (words && words.length >= 200) {
-        console.log("生成测试题目...");
-        TestEngine.startEngToZhTest(words);
-        TestUI.start("EngToZhMultipleChoice");
-    }
+// 立即执行 + 事件监听统一调用
+if (window.blogStatusDict["wordsReady"] && window.words?.length >= 200) {
+    startTest(window.words);
 }
 
-// ============ 事件：收到 wordsReady 后开始生成试题 ============
-window.addEventListener("wordsReady", (e) => {
-    const words = e.detail.words;
-    if (words && words.length >= 200) {
-        console.log("生成测试题目...");
-        TestEngine.startEngToZhTest(words);
-        TestUI.start("EngToZhMultipleChoice");
+window.addEventListener("wordsReady", e => {
+    if (e.detail.words?.length >= 200) {
+        startTest(e.detail.words);
     }
 });

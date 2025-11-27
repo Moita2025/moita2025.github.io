@@ -544,7 +544,9 @@ Utils.vocab.QuestionType = {
                 };
             });
 
-            window.TestEngine.core.init(questions);
+            const engineInstance = { ...Utils.vocab.testEngineCore };
+            engineInstance.init(questions);
+            return engineInstance;
         }
     }
 };
@@ -553,9 +555,11 @@ Utils.vocab.testUICore = {
     app: null,
     chart: null,
     currentRenderer: null,  // 当前使用的题型渲染器
+    testEngineCore: null,
 
-    init(containerId = "test-app") {
+    init(core, containerId = "test-app") {
         this.app = document.getElementById(containerId);
+        this.testEngineCore = core;
     },
 
     setRenderer(renderer) {
@@ -568,7 +572,7 @@ Utils.vocab.testUICore = {
     },
 
     renderResult() {
-        const r = window.TestEngine.getResult();
+        const r = this.testEngineCore.getResult();
         this.app.innerHTML = `
             <div class="result-chart">
                 <canvas id="resultChart" width="160" height="160"></canvas>
@@ -625,10 +629,21 @@ Utils.vocab.testUICore = {
 };
 
 Utils.vocab.QuestionRenderer = {
+
     EngToZhMultipleChoice: {
+
+        testEngineCore: null,
+        testUICore: null,
+
+        init(engineCore, uiCore)
+        {
+            this.testEngineCore = engineCore;
+            this.testUICore = uiCore
+        },
+
         renderQuestion() {
-            const q = window.TestEngine.getCurrent();
-            if (!q) return window.TestUI.core.renderResult();
+            const q = this.testEngineCore.getCurrent();
+            if (!q) return this.testUICore.renderResult();
 
             const word = window.Utils.str.b64d(q.word);
             const options = q.options.map(o => ({
@@ -636,11 +651,11 @@ Utils.vocab.QuestionRenderer = {
                 text: window.Utils.str.b64d(o)
             }));
 
-            window.TestUI.core.app.innerHTML = `
+            this.testUICore.app.innerHTML = `
                 <div class="test-progress">
-                    <div class="bar" style="width:${(window.TestEngine.getCurrentIdx() / window.TestEngine.core.questions.length) * 100}%"></div>
+                    <div class="bar" style="width:${(this.testEngineCore.currentIndex / this.testEngineCore.questions.length) * 100}%"></div>
                 </div>
-                <div class="test-count">${window.TestEngine.getCurrentIdx() + 1} / 50</div>
+                <div class="test-count">${this.testEngineCore.currentIndex + 1} / 50</div>
                 <div class="test-word">${word}</div>
                 <div class="test-options">
                     ${options.map((o, i) => `
@@ -657,21 +672,21 @@ Utils.vocab.QuestionRenderer = {
             document.querySelectorAll(".opt-btn").forEach(btn => {
                 btn.onclick = () => {
                     const correct = q.correct;
-                    const isCorrect = window.TestEngine.answer(btn.dataset.opt, correct, q);
+                    const isCorrect = this.testEngineCore.answer(btn.dataset.opt, correct, q);
                     btn.classList.add(isCorrect ? 'correct' : 'wrong');
-                    if (window.TestEngine.hasNext()) {
-                        window.TestUI.core.renderQuestion();
+                    if (this.testEngineCore.hasNext()) {
+                        this.testUICore.renderQuestion();
                     } else {
-                        window.TestUI.core.renderResult();
+                        this.testUICore.renderResult();
                     }
                 };
             });
 
-            document.getElementById("end-now").onclick = () => window.TestUI.core.renderResult();
+            document.getElementById("end-now").onclick = () => this.testUICore.renderResult();
         },
 
         renderWrongWords() {
-            const wrongItems = window.TestEngine.getResult().wrongItems;
+            const wrongItems = this.testEngineCore.getResult().wrongItems;
             if (wrongItems.length === 0) return "<p>全部正确！太棒了！</p>";
 
             return wrongItems.map(q => {
