@@ -14,5 +14,4 @@
 <script src="/assets/javascripts/utils.js"></script>
 <script src="/assets/javascripts/init_word_page.js"></script>
 <script src="/assets/javascripts/third_party/chart.js"></script>
-<script src="/assets/javascripts/word_test/word_practice.js"></script>
 <script src="/assets/javascripts/word_test/word_test_engine_en2zh_mcq.js"></script>
