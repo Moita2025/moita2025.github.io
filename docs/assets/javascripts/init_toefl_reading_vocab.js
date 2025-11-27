@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     let currentCollection = 'toefl';
 
     // 3. 获取文章标题
-    const articleParam = Utils.url.getSearchParam({
+    const articleParam = window.Utils.url.getSearchParam({
         paramName: "article",
         defaultParam: "timberline_vegetation_on_mountains"
     });
@@ -76,9 +76,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         const subHeader = document.querySelector(`.${article_title} h2:nth-child(2)`);
         if (subHeader) subHeader.remove();
         document.querySelector(`.${article_title}`).insertAdjacentHTML("beforeend",
-            `<h2>${displayName}（第 ${page}/${Utils.ui.pagination.totalPages} 页，共 ${words.length} 词）</h2>`);
+            `<h2>${displayName}（第 ${page}/${window.Utils.ui.pagination.totalPages} 页，共 ${words.length} 词）</h2>`);
 
-        Utils.ui.renderTable(words, page, {
+        window.Utils.ui.renderTable(words, page, {
             containerId: TABLE_IDS[currentCollection],
             pageSize: 36,
             colFactor: 3,
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
 
     // 7. 初始化分页器（只一次！）
-    Utils.ui.pagination.init({
+    window.Utils.ui.pagination.init({
         totalItems: allWords[currentCollection].length,
         pageSize: 36,
         onChange: renderCurrent
@@ -109,29 +109,29 @@ document.addEventListener("DOMContentLoaded", async () => {
         currentCollection = newCollection;
 
         // 更新 URL
-        Utils.url.updateSearchParams({
+        window.Utils.url.updateSearchParams({
             collection: currentCollection === "toefl" ? null : currentCollection,
             page: null
         });
 
         // 更新分页器 + 渲染
-        Utils.ui.pagination.updateTotalPages(allWords[currentCollection].length, 36);
-        Utils.ui.pagination.currentPage = 1;
-        Utils.ui.pagination.updateUI();
+        window.Utils.ui.pagination.updateTotalPages(allWords[currentCollection].length, 36);
+        window.Utils.ui.pagination.currentPage = 1;
+        window.Utils.ui.pagination.updateUI();
         renderCurrent(1);
 
         console.log('here');
     });
 
     // 9. 首次渲染 + 支持 URL 直接打开指定词库
-    const urlCollection = Utils.url.getSearchParam({ paramName: "collection" });
+    const urlCollection = window.Utils.url.getSearchParam({ paramName: "collection" });
     if (urlCollection && TAB_TEXT_TO_COLLECTION[Object.keys(TAB_TEXT_TO_COLLECTION).find(k => 
         TAB_TEXT_TO_COLLECTION[k] === urlCollection)]) {
         currentCollection = urlCollection;
     }
 
     // 确保分页器和渲染正确
-    Utils.ui.pagination.updateTotalPages(allWords[currentCollection].length, 36);
+    window.Utils.ui.pagination.updateTotalPages(allWords[currentCollection].length, 36);
     renderCurrent(1);
 
     // 自动选中 URL 对应的 tab（Material for MkDocs 会自动处理，但保险）
