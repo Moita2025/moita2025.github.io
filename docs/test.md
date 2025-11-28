@@ -1,5 +1,9 @@
 # Test Page
 
+<button onclick="BackToTop('2')" class="BackToTop">返回 “托福”</button>
+
+---
+
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 MathJax Math Formula Test:

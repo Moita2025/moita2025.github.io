@@ -39,6 +39,10 @@ hide:
 
     [:octicons-arrow-right-24: 了解更多](Reading/ArtiSubjClasList.md)
 
+-   __示例__
+
+    [:octicons-arrow-right-24: 了解更多](Reading/Example.md)
+
 </div>
 
 ## :fontawesome-solid-ear-listen:{ .lg .middle } &nbsp; __托福听力__
@@ -66,6 +70,14 @@ hide:
 -   __介绍__
 
     [:octicons-arrow-right-24: 了解更多](Speaking/Intro.md)
+
+-   __评分标准 & 要点__
+
+    [:octicons-arrow-right-24: 了解更多](Speaking/SpeakScorCrtr.md)
+
+-   __通用万能模板__
+
+    [:octicons-arrow-right-24: 了解更多](Speaking/GeneralTemplate.md)
 
 </div>
 
