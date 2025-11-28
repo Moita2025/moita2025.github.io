@@ -173,7 +173,7 @@ async function initToeflListenPage() {
         if (urlTPO != null) {
             const idx = tpoData.findIndex(item => String(item.TPO) === String(urlTPO));
             if (idx !== -1) {
-                window.Utils.ui.pagination.setCurrentPage(idx + 1);
+                renderTPO(tpoData[idx], container);
                 return;
             }
         }

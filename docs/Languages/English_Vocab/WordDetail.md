@@ -46,4 +46,4 @@
 </div>
 
 <script src="/assets/javascripts/utils.js"></script>
-<script src="/assets/javascripts/init_word_detail_page.js"></script>
+<script src="/assets/javascripts/init_page/word_detail_page.js"></script>
