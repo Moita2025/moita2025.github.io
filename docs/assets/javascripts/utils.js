@@ -14,15 +14,15 @@ Utils.url.getSearchParam = function(config = {}){
     const {isInt = false} = config;
 
     const params = new URLSearchParams(window.location.search);
-    const key = params.get(config.paramName);
+    const value = params.get(config.paramName);
 
     if (config.map) 
     {
-        if (key && config.map[key]) {
+        if (value && config.map[value]) {
             return isInt ? parseInt(value, 10) : value;
         }
     }
-    else if (key) {
+    else if (value) {
         return isInt ? parseInt(value, 10) : value;
     }
     
