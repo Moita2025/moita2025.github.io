@@ -489,6 +489,17 @@ Utils.ui.generateDialogue = function(lines, parentElement, isDialogue, chatTitle
     });
 }
 
+Utils.ui.generateLink = function(text, href, isBlank = false, isUnderlined = false){
+    const link = document.createElement("a");
+    link.href = href;
+    if (isBlank) link.target = "_blank";
+    link.textContent = text;
+    link.style.color = "var(--md-primary-fg-color)";
+    if (isUnderlined) link.style.textDecoration = "underline";
+
+    return link;
+}
+
 ////////vocab
 
 Utils.vocab.WORD_JSON_MAP = {

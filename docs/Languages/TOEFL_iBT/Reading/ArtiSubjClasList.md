@@ -158,12 +158,19 @@
 | TPO 18 | Lightning                      | Climate  | 自然现象 Lightning   |
 | TPO 23 | Urban Climates                 | Climate  | 城市气候 Urban       |
 
+<script src="/assets/javascripts/utils.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", async function () {
   // 1. 加载索引
   const response = await fetch("/assets/data/toefl_data/toefl_reading_articles_index.json");  // 改成你的实际路径
   const index = await response.json();
+
   const map = {};
+
+  const sortedIndex = [...index].sort((a, b) =>
+    a.Article.trim().localeCompare(b.Article.trim())
+  );
+
   index.forEach(item => {
     map[item.Article.trim()] = item;
   });
@@ -181,14 +188,18 @@ document.addEventListener("DOMContentLoaded", async function () {
         displayTitle = source.includes("01") ? "Groundwater (TPO01)" : "Groundwater (TPO28)";
       }
 
-      const link = document.createElement("a");
-      link.href = `../ArticleVocab/?article=${ParamName}`;
-      link.target = "_blank";
-      link.textContent = displayTitle;
-      link.style.color = "var(--md-primary-fg-color)";
-      link.style.textDecoration = "underline";
-      td.textContent = "";  // 清空原文本
-      td.appendChild(link);
+      const articleIndex = sortedIndex.findIndex(item => item.Article.trim() === text);
+
+      const linkText = window.Utils.ui.generateLink(
+        "（文章）", `../Example/?page=${articleIndex+1}`, true
+      );
+      const linkWord = window.Utils.ui.generateLink(
+        "（单词）", `../ArticleVocab/?article=${ParamName}`, true
+      );
+
+      td.appendChild(document.createElement("br"));
+      td.appendChild(linkText);
+      td.appendChild(linkWord);
     }
   });
 });
