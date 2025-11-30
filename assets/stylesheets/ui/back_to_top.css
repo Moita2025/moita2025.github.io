@@ -1,0 +1,29 @@
+/* 按钮的基本样式 */
+.BackToTop {
+  width: 100px;                  /* 按钮宽度 */
+  height: 40px;                  /* 按钮高度 */
+  background-color: #fff;        /* 背景颜色（白） */
+  color: #000;                   /* 字体颜色（黑） */
+  border: 2px solid #000;        /* 边框颜色（黑） */
+  border-radius: 6px;            /* 圆角 */
+  font-size: 14px;               /* 字体大小 */
+  font-weight: 500;              /* 字体粗细 */
+  cursor: pointer;               /* 鼠标悬浮时变为手形 */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15); /* 阴影效果 */
+  transition: all 0.25s ease;    /* 平滑过渡效果 */
+  z-index: 9999;                 /* 保证在最上层 */
+}
+
+/* 鼠标悬浮时 */
+.BackToTop:hover {
+  background-color: #000;        /* 背景变黑 */
+  color: #fff;                   /* 字体变白 */
+}
+
+/* 鼠标点击时 */
+.BackToTop:active {
+  background-color: #333;        /* 按下变成深灰 */
+  border-color: #333;
+  color: #fff;
+  transform: scale(0.96);        /* 点击时略缩小 */
+}

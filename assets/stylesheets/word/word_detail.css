@@ -1,0 +1,66 @@
+.back-btn { margin: 1rem 0; }
+.word-detail-container { max-width: 960px; margin: 0 auto; padding: 0; }
+.word-detail-container .content .word-title { 
+  margin: 0; font-size: 2.8rem; 
+  text-align: center;
+}
+
+.phonetic { font-size: 1.4rem; color: var(--md-primary-fg-color); font-weight: 300; }
+
+.pronounce-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 0;
+  font-size: 1.2em;
+}
+.pronounce-btn { min-width: 48px; }
+
+.section { margin: 0; }
+.section h3 { 
+  border-bottom: 2px solid var(--md-primary-fg-color--light); 
+  padding-bottom: 0.4rem; 
+  margin-bottom: 0.4rem;
+}
+
+.translations { padding-left: 1.2rem; }
+.translations li {
+  margin: 0;
+  line-height: 1.6;
+}
+.translations .type {
+  font-weight: bold;
+  color: var(--md-accent-fg-color);
+  margin-right: 0.5rem;
+}
+
+/* 短语网格：桌面 2 列，手机 1 列 */
+.phrases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+  margin-top: 1.2em;
+}
+.phrase-card {
+  background: var(--md-code-bg-color);
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--md-primary-fg-color);
+}
+.phrase-card .phrase { 
+  font-weight: bold; 
+  color: var(--md-primary-fg-color);
+  margin-bottom: 0.4rem;
+}
+.phrase-card .trans { color: var(--md-default-fg-color--light); }
+
+.loading { text-align:center; padding: 4rem 0; }
+.hidden { display:none; }
+
+/* 手机端优化 */
+@media (max-width: 768px) {
+  .word-title { font-size: 2.2rem; }
+  .pronounce-bar { justify-content: center; }
+  .phrases-grid { grid-template-columns: 1fr; }
+}
