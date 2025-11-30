@@ -61,8 +61,6 @@ const renderDayTable = (dayObj, container) => {
         emptyCell: `<td colspan="4"></td>`
     });
 
-    container.appendChild(tableContainer);
-
     container.lastElementChild?.addEventListener('click', e => {
         const btn = e.target.closest('.speak-cell');
         if (btn) window.Utils.vocab.speak(btn.dataset.word, 'en-US');

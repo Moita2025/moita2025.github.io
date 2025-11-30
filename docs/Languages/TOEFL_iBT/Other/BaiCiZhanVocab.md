@@ -4,11 +4,6 @@
 
 ---
 
-<style>
-  .word-table {text-align:center;}
-  .word-table tr td {max-width: 200px;}
-</style>
-
 <!-- 分页器 -->
 <div id="paginator">
   <button class="ui-btn prev-page">上一页</button>
