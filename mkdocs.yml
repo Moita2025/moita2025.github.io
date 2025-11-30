@@ -94,6 +94,7 @@ nav:
               - Languages/TOEFL_iBT/Speaking/GeneralTemplate.md
           - 写作:
               - Languages/TOEFL_iBT/Writing/Intro.md
-  
+          - 其他:
+              - Languages/TOEFL_iBT/Other/BaiCiZhanVocab.md
   - 金融:
       - 汇率: Finance/Currencies.md

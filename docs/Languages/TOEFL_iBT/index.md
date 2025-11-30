@@ -91,3 +91,12 @@ hide:
 
 </div>
 
+## :simple-bookstack:{ .lg .middle } &nbsp; __其他__
+
+<div class="grid cards compact-grid-single-row" markdown>
+
+-   __百词斩托福单词列表__
+
+    [:octicons-arrow-right-24: 了解更多](Other/BaiCiZhanVocab.md)
+
+</div>
