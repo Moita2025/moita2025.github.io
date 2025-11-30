@@ -253,8 +253,10 @@ Utils.ui.generateSwitchListHTML = function(config){
     `;
 }
 
-Utils.ui.bindDlg2Btn = function(btnSelector, dlgContent){
-    document.addEventListener("DOMContentLoaded", () => {
+Utils.ui.bindDlg2Btn = function(btnSelector, dlgContent, waitDOMLoaded = true){
+
+    if (!waitDOMLoaded)
+    {
         const btn = document.querySelector(btnSelector);
 
         if (btn) {
@@ -262,7 +264,19 @@ Utils.ui.bindDlg2Btn = function(btnSelector, dlgContent){
                 showDialog(dlgContent);
             });
         }
-    });
+    }
+    else
+    {
+        document.addEventListener("DOMContentLoaded", () => {
+            const btn = document.querySelector(btnSelector);
+
+            if (btn) {
+                btn.addEventListener("click", () => {
+                    showDialog(dlgContent);
+                });
+            }
+        });
+    }  
 }
 
 Utils.ui.pagination = {

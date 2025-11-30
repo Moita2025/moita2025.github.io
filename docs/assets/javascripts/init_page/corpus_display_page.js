@@ -47,6 +47,10 @@ const renderCorpusEle = (ele, container) => {
     }
     container.appendChild(keywords);
 
+    for (const text of ele.text)
+    {
+        container.appendChild($("p", text));
+    }
 };
 
 const renderPage = (pageIndex, container) => {
@@ -105,6 +109,17 @@ async function initCorpusPage() {
         });
 
         renderPage(0, container);
+
+        window.Utils.ui.bindDlg2Btn("#switch-type", 
+            window.Utils.ui.generateSwitchListHTML({
+                title: '切换语料类别',
+                currentKey: currentType,
+                keyToNameMap: TYPE_NAME_MAP,
+                buildUrl: (key) => `./?type=${encodeURIComponent(key)}`
+            }),
+            false
+        );
+
 
     } catch (err) {
         console.error('加载数据失败', err);

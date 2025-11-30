@@ -4,6 +4,8 @@
 
 ---
 
+<button id="switch-type" class="ui-btn">切换其他类别</button>
+
 <!-- 分页器 -->
 <div id="paginator">
   <button class="ui-btn prev-page">上一页</button>
