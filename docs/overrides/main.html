@@ -1,34 +1,41 @@
 {% extends "base.html" %}
 
 {% block extrahead %}
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/ui/dialog.css' | url }}">
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/ui/back_to_top.css' | url }}">
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/ui/controls.css' | url }}">
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/ui/compact_grid.css' | url }}">
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/ui/pagination.css' | url }}">
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/ui/chat_dialogue.css' | url }}">
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/ui/tag_green.css' | url }}">
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/ui/fuzzy_search.css' | url }}">
+    <link rel="stylesheet" href="{{ 'assets/stylesheets/ui/dialog.css' | url }}">
+    <link rel="stylesheet" href="{{ 'assets/stylesheets/ui/back_to_top.css' | url }}">
+    <link rel="stylesheet" href="{{ 'assets/stylesheets/ui/controls.css' | url }}">
+    <link rel="stylesheet" href="{{ 'assets/stylesheets/ui/compact_grid.css' | url }}">
+    <link rel="stylesheet" href="{{ 'assets/stylesheets/ui/pagination.css' | url }}">
+    <link rel="stylesheet" href="{{ 'assets/stylesheets/ui/chat_dialogue.css' | url }}">
+    <link rel="stylesheet" href="{{ 'assets/stylesheets/ui/tag_green.css' | url }}">
+    <link rel="stylesheet" href="{{ 'assets/stylesheets/ui/fuzzy_search.css' | url }}">
 
-  <link rel="stylesheet" href="{{ 'assets/third_party/jsMind/jsmind.css' | url }}">
+    <link rel="stylesheet" href="{{ 'assets/third_party/jsMind/jsmind.css' | url }}">
 
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/word/word_letter_index_buttons.css' | url }}">
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/word/word_test_style.css' | url }}">
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/word/word_detail.css' | url }}">
+    <link rel="stylesheet" href="{{ 'assets/stylesheets/word/word_letter_index_buttons.css' | url }}">
+    <link rel="stylesheet" href="{{ 'assets/stylesheets/word/word_test_style.css' | url }}">
+    <link rel="stylesheet" href="{{ 'assets/stylesheets/word/word_detail.css' | url }}">
 
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/toefl_listen_eg.css' | url }}">
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/toefl_reading_vocab.css' | url }}">
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/baicizhan_words.css' | url }}">
+    <link rel="stylesheet" href="{{ 'assets/stylesheets/toefl_listen_eg.css' | url }}">
+    <link rel="stylesheet" href="{{ 'assets/stylesheets/toefl_reading_vocab.css' | url }}">
+    <link rel="stylesheet" href="{{ 'assets/stylesheets/baicizhan_words.css' | url }}">
+
+    <script src="{{ 'assets/javascripts/utils.js' | url }}"></script>
+
+    <script src="{{ 'assets/javascripts/dialog.js' | url }}"></script>
+    <script src="{{ 'assets/javascripts/back_to_top.js' | url }}"></script>
+
+    <script src="{{ 'assets/javascripts/third_party/chart.js' | url }}"></script>
+    <script src="{{ 'assets/javascripts/third_party/fuse.js' | url }}"></script>
+    <script src="{{ 'assets/javascripts/third_party/twemoji.min.js' | url }}"></script>
+    <script src="{{ 'assets/javascripts/third_party/rough-notation.iife.js' | url }}"></script>
+
+    
 {% endblock %}
 
 {% block scripts %}
-  {{ super() }}
-  <script src="{{ 'assets/javascripts/dialog.js' | url }}"></script>
-  <script src="{{ 'assets/javascripts/back_to_top.js' | url }}"></script>
-
-  <script src="{{ 'assets/javascripts/mathjax.js' | url }}"></script>
-  <script src="https://unpkg.com/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    {{ super() }}
   
-  <script src="{{ 'assets/javascripts/third_party/twemoji.min.js' | url }}"></script>
-  <script src="{{ 'assets/javascripts/third_party/rough-notation.iife.js' | url }}"></script>
+    <script src="{{ 'assets/javascripts/mathjax.js' | url }}"></script>
+    <script src="https://unpkg.com/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
 {% endblock %}

@@ -49,9 +49,7 @@
 
 <ul id="search-result-list"></ul>
 
-<script src="/assets/javascripts/utils.js"></script>
 <script src="/assets/javascripts/init_page/word_page.js"></script>
-<script src="/assets/javascripts/third_party/fuse.js"></script>
 <script src="/assets/javascripts/word_list/word_table_pagination.js"></script>
 <script src="/assets/javascripts/word_list/word_table_letter_index.js"></script>
 <script src="/assets/javascripts/word_list/word_data_search.js"></script>

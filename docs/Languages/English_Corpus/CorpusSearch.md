@@ -14,6 +14,4 @@
 
 <div id="search-result-items"></div>
 
-<script src="/assets/javascripts/utils.js"></script>
-<script src="/assets/javascripts/third_party/fuse.js"></script>
 <script src="/assets/javascripts/init_page/corpus_search_page.js"></script>

@@ -80,5 +80,4 @@
     };
 </script>
 
-<script src="/assets/javascripts/utils.js"></script>
 <script src="/assets/javascripts/init_page/toefl_listen_eg_page.js"></script>

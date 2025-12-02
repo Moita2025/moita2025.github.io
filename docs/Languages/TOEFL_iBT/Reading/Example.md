@@ -120,5 +120,4 @@ const sampleArticle = {
     ]
 };
 </script>
-<script src="/assets/javascripts/utils.js"></script>
 <script src="/assets/javascripts/init_page/toefl_reading_eg_page.js"></script>

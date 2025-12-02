@@ -158,7 +158,6 @@
 | TPO 18 | Lightning                      | Climate  | 自然现象 Lightning   |
 | TPO 23 | Urban Climates                 | Climate  | 城市气候 Urban       |
 
-<script src="/assets/javascripts/utils.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", async function () {
   // 1. 加载索引

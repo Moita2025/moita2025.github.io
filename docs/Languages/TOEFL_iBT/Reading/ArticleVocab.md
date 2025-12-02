@@ -39,5 +39,4 @@
 
 <div id="failInfo"></div>
 
-<script src="/assets/javascripts/utils.js"></script>
 <script src="/assets/javascripts/init_page/toefl_reading_vocab_page.js"></script>

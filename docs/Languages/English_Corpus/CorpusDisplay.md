@@ -46,5 +46,4 @@
   <span class="page-info"></span>
 </div>
 
-<script src="/assets/javascripts/utils.js"></script>
 <script src="/assets/javascripts/init_page/corpus_display_page.js"></script>
