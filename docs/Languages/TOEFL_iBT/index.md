@@ -93,6 +93,10 @@ hide:
 
     [:octicons-arrow-right-24: 了解更多](Writing/Intro.md)
 
+-   __六个通用模板__
+
+    [:octicons-arrow-right-24: 了解更多](Writing/GeneralTemplate.md)
+
 </div>
 
 ## :simple-bookstack:{ .lg .middle } &nbsp; __其他__

@@ -11,6 +11,10 @@ hide:
 
 ---
 
+!!! note "注意"
+
+    语料素材的分类基于 Python Spacy，所以会出现误分的情况
+
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     // 确保 Twemoji 在页面加载完成后进行解析
