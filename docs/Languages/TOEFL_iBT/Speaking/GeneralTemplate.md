@@ -8,7 +8,7 @@
 
 ```mermaid
 graph LR
-    A[Fiona口语模板] --> B[Task 1]
+    A[万能口语模板] --> B[Task 1]
     A --> C[Task 2]
     A --> D[Task 3]
     A --> E[Task 4]
@@ -17,11 +17,6 @@ graph LR
     C --> C1[校园情境+个人观点]
     D --> D1[阅读+听力+回应]
     E --> E1[讲座内容+例子]
-    
-    B1 --> Z1["1-2句直接回答<br>Well/Personally, I have to.../I prefer to do..."]
-    B1 --> Z2["1句解释原因<br>Because that's because [it could help...]"]
-    B1 --> Z3["举例<br>A for example/take me for example/for instance..."]
-    B1 --> Z4["总结<br>That is..."]
 ```
 
 ## 通用万能模板（4步结构）
