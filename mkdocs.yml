@@ -1,4 +1,4 @@
-site_name: My Docs
+site_name: Moita's Blog
 site_url: https://moita2025.github.io/
 theme:
     name: material
@@ -10,6 +10,8 @@ theme:
         - navigation.tabs
         - navigation.tabs.sticky
         - navigation.indexes
+    palette:
+        primary: teal
 
 markdown_extensions:
     - pymdownx.arithmatex:
