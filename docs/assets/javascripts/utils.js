@@ -626,8 +626,10 @@ Utils.ui.createDataTable = function (
         pageLength = 10,
         lengthMenu = [5, 10, 15, 20],
         tableClass = "cell-border compact stripe",
-        useURLParam = false
-    } = {}
+        useURLParam = false,
+        rowCallbackFunc = function(row, data, dataIndex){}
+    } = {},
+    customColumns = null
 ) {
     // 1. 确保表格存在并清空可能已有的内容
     const $table = $(`#${tableId}`);
@@ -654,12 +656,13 @@ Utils.ui.createDataTable = function (
     $table.removeClass().addClass(tableClass);
 
     // 4. 定义 columns 配置（支持对象数组或二维数组）
-    const dtColumns = columns.map(() => ({}));
+    const dtColumns = customColumns || columns.map(title => ({ title }));
 
     // 5. 初始化 DataTable
     const table = $table.DataTable({
         data: data,
         columns: dtColumns,
+        rowCallback: rowCallbackFunc,
         paging: true,
         pageLength,
         lengthMenu,

@@ -24,39 +24,36 @@ const renderDayTable = (dayObj, container) => {
     // ---- 第 X 天标题 ----
     container.appendChild($$('h2', `第 ${day} 天`));
 
-    const tableContainer = document.createElement("div");
+    const tableContainer = document.createElement("table");
     const tableId = `table-day-${day}`;
     tableContainer.id = tableId;
 
     container.appendChild(tableContainer);
 
-    const wordsWithTrans = dayObj.words.map(word => ({
+    const wordsWithTrans = dayObj.words.map(word => ([
         word,
-        trans: dictMap.get(word.toLowerCase()) || '——'
-    }));
+        dictMap.get(word.toLowerCase()) || '——',
+        "🔊"
+    ]));
 
-    window.Utils.ui.renderTable(wordsWithTrans, 1, {
-        pageSize: wordsWithTrans.length,   // 本页就是这一天的全部
-        colFactor: 1,                      // 每行显示 2 组
-        isColArrange: false,               // 横向填充（更自然）
-        containerId: tableId,        // 临时借用，我们会立刻移动 DOM
-        headerTitles: ['单词', '中文翻译', '朗读'],
-
-        renderCell: (item) => {
-            return `
-                <td>${item.word}</td>
-                <td class="trans-hidden">${item.trans}</td>
-                <td class="speak-cell" data-word="${item.word}">🔊</td>
-            `;
-        },
-
-        emptyCell: `<td colspan="4"></td>`
-    });
-
-    container.lastElementChild?.addEventListener('click', e => {
-        const btn = e.target.closest('.speak-cell');
-        if (btn) window.Utils.vocab.speak(btn.dataset.word, 'en-US');
-    });
+    const table = window.Utils.ui.createDataTable(
+        tableId,                 // tableId
+        ['单词', '中文', '发音'],                // columns
+        wordsWithTrans,                       // data
+        {
+            pageLength: 10,
+            rowCallbackFunc: function(row, data, dataIndex) {
+                $('td:eq(1)', row).addClass('trans-hidden'); 
+                $('td:eq(2)', row).addClass('speak-cell');
+                var word = $('td:eq(0)', row).text().trim();
+                $('td:eq(2)', row).on('click', function() {
+                    if (word) {
+                        window.Utils.vocab.speak(word, 'en-US'); // 朗读单词
+                    }
+                });
+            }
+        }
+    );
 };
 
 // 渲染一页（3 天）
@@ -64,7 +61,8 @@ const renderPage = (pageIndex, container) => {
     container.innerHTML = '';
 
     const start = pageIndex * 3;
-    const daysToShow = bczDaysData.slice(start, start + 3);
+    const end = Math.min(start + 3, bczDaysData.length);
+    const daysToShow = bczDaysData.slice(start, end);
 
     daysToShow.forEach(dayObj => renderDayTable(dayObj, container));
 
@@ -115,7 +113,13 @@ async function initBczPage() {
             }
         });
 
-        renderPage(0, container);
+        const pageParam = window.Utils.url.getSearchParam({ 
+            paramName: "page",
+            isInt: true,
+            defaultParam: 1
+        });
+
+        renderPage(pageParam - 1, container);
 
     } catch (err) {
         console.error('加载数据失败', err);
