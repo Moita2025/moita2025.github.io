@@ -1,0 +1,23 @@
+/* 让 li 成为竖直方向的 flex 容器 */
+.md-typeset .grid.cards.compact-grid-single-row > ul > li {
+    display: flex;
+    justify-content: space-between;
+}
+
+.md-typeset .grid.cards.compact-grid-single-row > ul > li p:first-of-type {
+    margin-top: 0.5em;
+}
+
+/* 让 li 内最后一个 <p> 自动靠右 */
+.md-typeset .grid.cards.compact-grid-single-row > ul > li p:last-of-type {
+    margin-left: auto;
+}
+
+/* 让桌面端 li 更窄，显示更多列；手机端保持不变 */
+@media screen and (min-width: 768px) {
+  .md-typeset .grid.compact-grid,
+  .md-typeset .grid.compact-grid-single-row {
+    /* 将每一列的最小宽度从 16rem → 12rem（可改） */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  }
+}

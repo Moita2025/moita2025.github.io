@@ -1,0 +1,28 @@
+.search-box {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.search-box [id$="-clear-btn"] {
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.search-box [id$="-search-input"] { flex: 1; padding: 6px 10px; font-size: 1rem; }
+
+#search-result-list {
+    border: 1.5px solid var(--md-default-fg-color--lighter);
+    min-height: 250px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;  /* 手机端默认一列 */
+    gap: 6px 12px;
+    padding-left: 0;
+}
+
+/* 电脑端（宽度 >= 768px）显示两列 */
+@media (min-width: 768px) {
+    #search-result-list {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}

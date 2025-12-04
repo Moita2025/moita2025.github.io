@@ -1,0 +1,15 @@
+.section-title {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.reading-title {
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.intro-line {
+    font-style: italic;
+    opacity: 0.8;
+}

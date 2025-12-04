@@ -1,0 +1,109 @@
+/* 进度条 */
+.test-progress {
+    width: 100%;
+    height: 10px;
+    background: #eee;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+.test-progress .bar {
+    height: 10px;
+    background: #4CAF50;
+    border-radius: 5px;
+}
+
+/* 题号 */
+.test-count {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/* 单词 */
+.test-word {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 20px 0;
+    text-align:center;
+}
+
+/* 选项 */
+.test-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+.opt-btn {
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background-color: transparent;     /* 假设初始是透明或白色背景 */
+    color: #333;                        /* 初始文字颜色 */
+    cursor: pointer;
+    transition: all 0.3s ease;          /* 添加平滑过渡效果 */
+}
+
+/* 鼠标悬浮时的状态 */
+.opt-btn:hover {
+    border-color: #fff;     /* 边框变白 */
+    background-color: #000; /* 按钮背景变黑 */
+    color: #fff;            /* 字体变白 */
+}
+
+/* 鼠标按下时的状态（点击瞬间） */
+.opt-btn:active {
+    border-color: #fff;
+    background-color: #000;
+    color: #fff;
+    transform: scale(0.98); /* 可选：轻微按下效果，更有反馈感 */
+}
+
+/* 可选：focus 状态（键盘操作时高亮） */
+.opt-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+/* 提前结束 */
+#end-now {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+/* 结果页 */
+.result-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 水平居中所有子元素 */
+    justify-content: center;
+    text-align: center;
+}
+
+.result-chart button {
+    margin-top: 20px;
+}
+
+.result-text {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.wrong-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 电脑端一行 3 个 */
+    gap: 10px; /* 可调，控制间距 */
+    margin-top: 20px;
+}
+
+.wrong-item {
+    padding: 5px 7.5px;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+/* 手机端（宽度 <= 768px）一行两个 */
+@media (max-width: 768px) {
+    .wrong-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

@@ -1,0 +1,27 @@
+/* PC端单行 */
+#paginator {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin: 1em auto;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+/* Mobile 自动换行 */
+@media (max-width: 600px) {
+    #paginator {
+        flex-wrap: wrap;
+    }
+
+    #page-info {
+        flex-basis: 100%;
+        margin-top: 0.3em;
+        text-align: center;
+    }
+}
+
+/* 单独为分页输入框设置宽度 */
+#page-input {
+    width: 4em;
+}
